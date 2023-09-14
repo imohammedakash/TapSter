@@ -12,63 +12,11 @@ import { MdLocationPin, MdOutlineMail, MdPhone } from "react-icons/md";
 import Link from "next/link";
 import Image from "next/image";
 
-
 const Footer = () => {
   return (
-    <footer className="w-full bg-black">
-      <div className="w-full flex items-center justify-center">
-        <div className="text-white flex items-center justify-around py-7 border-b w-[80%] flex-wrap gap-7">
-          <div className="text-white flex items-center justify-center gap-2">
-            <div className="flex flex-col">
-              <span className="text-2xl whitespace-nowrap">
-                TickTag&nbsp;
-              </span>
-              <span className="text-sm tracking-widest whitespace-nowrap">
-                &nbsp;Just Carry On
-              </span>
-            </div>
-          </div>
-          <div className="text-white flex items-center justify-center gap-2">
-            <MdLocationPin className="text-3xl" />
-            <a
-              target="blank"
-              href="https://maps.google.com/?q=Mamura,  Noida, Uttar Pradesh, India"
-              className="text-xs"
-            >
-              &nbsp;Sector 63 <br />
-              Noida, Uttar Pradesh, India
-            </a>
-          </div>
-          <div className="text-white flex items-start justify-center gap-2">
-            <MdOutlineMail className="text-3xl" />
-            <div className="flex flex-col">
-              <a href="mailto:ticktag@gmail.com" className="text-sm">
-                &nbsp;ticktag@gmail.com
-              </a>
-              <a
-                target="_blank"
-                href="mailto:akashchtry@gmail.com"
-                className="text-sm"
-              >
-                &nbsp;akashchtry@gmail.com
-              </a>
-            </div>
-          </div>
-          <div className="text-white flex items-start justify-center gap-2">
-            <MdPhone className="text-3xl" />
-            <div className="flex flex-col">
-              <a href="tel:+919382546049" className="text-sm">
-                &nbsp;+91 93825 46049
-              </a>
-              <a href="tel:+917029793127" className="text-sm">
-                &nbsp;+91 7029793127       
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <footer className="w-full border-t">
       <div className=" flex flex-col items-center justify-center py-8 flex-wrap">
-        <div className="w-full text-white flex items-start justify-around flex-wrap gap-7">
+        <div className="w-full flex items-start justify-around flex-wrap gap-7">
           <div className="w-1/4 flex items-center justify-center">
             <div className="flex items-start justify-center flex-col gap-3">
               <h2 className="font-semibold text-lg whitespace-nowrap">
@@ -95,38 +43,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex items-center justify-center">
-            <div className="flex items-start justify-center flex-col gap-3">
-              <h2 className="font-semibold text-lg whitespace-nowrap">
-                Lets Connect
-              </h2>
-              <ul className="flex items-center justify-center gap-3 flex-col">
-                <li className=" list-none flex items-center justify-center gap-3">
-                  <a
-                    href="https://linkedin.com/in/mohammedakash"
-                    target="blank"
-                  >
-                    <AiFillLinkedin className="text-3xl  hover:rotate-12 hover:scale-105 transition-all" />
-                  </a>
-                  <a href="https://twitter.com/imohammedakash" target="blank">
-                    <AiOutlineTwitter className="text-3xl hover:rotate-12 hover:scale-105 transition-all" />
-                  </a>
-                  <a href="https://facebook.com/imohammedakash" target="blank">
-                    <AiFillFacebook className="text-3xl hover:rotate-12 hover:scale-105 transition-all" />
-                  </a>
-                </li>
-                <li className=" list-none flex items-center justify-center gap-3">
-                  <a href="https://instagram.com/imohammedakash" target="blank">
-                    <AiOutlineInstagram className="text-3xl hover:rotate-12 hover:scale-105 transition-all" />
-                  </a>
-                  <a href="https://pinterest.com/imohammedakash" target="blank">
-                    <FaPinterestSquare className="text-2xl hover:rotate-12 hover:scale-105 transition-all" />
-                  </a>
-                  <a href="https://youtube.com/imohammedakash" target="blank">
-                    <AiFillYoutube className="text-3xl hover:rotate-12 hover:scale-105 transition-all" />
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <div className="flex items-start justify-center flex-col gap-3"></div>
           </div>
           <div className="flex items-start justify-center flex-col gap-4">
             <h2 className="font-semibold text-lg">Newsletter</h2>
@@ -149,13 +66,38 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="w-full py-3 flex items-center justify-center text-white bg-[#121212]">
-        <span className=" whitespace-nowrap md:text-base text-sm">
-          Copyright © {new Date().getFullYear()}{" "}
-          <a target="_blank" href="/">
-            ticktag
-          </a>
-        </span>
+      <div className="flex items-center justify-center relative py-6 after:content-[''] after:absolute after:w-[80%] after:h-[0.5px] after:bg-[#a6a6a695] after:top-0">
+        <div className="py-3 flex items-center justify-between w-[80%]">
+          <div className="flex items-center gap-2">
+            {/* <a className=" first-letter:text-xl " target="_blank" href="/">
+              Tapster.
+            </a> */}
+            <span className=" whitespace-nowrap md:text-base text-sm">
+              copyright © {new Date().getFullYear()} {" "} tapster.in
+            </span>
+          </div>
+          <ul className="flex items-center justify-center text-[#252323d0] gap-5 text-2xl">
+            <a href="https://linkedin.com/in/mohammedakash" target="blank">
+              <AiFillLinkedin className="  hover:rotate-12 hover:scale-105 transition-all" />
+            </a>
+            <a href="https://twitter.com/imohammedakash" target="blank">
+              <AiOutlineTwitter className="hover:rotate-12 hover:scale-105 transition-all" />
+            </a>
+            <a href="https://facebook.com/imohammedakash" target="blank">
+              <AiFillFacebook className="hover:rotate-12 hover:scale-105 transition-all" />
+            </a>
+
+            <a href="https://instagram.com/imohammedakash" target="blank">
+              <AiOutlineInstagram className=" hover:rotate-12 hover:scale-105 transition-all" />
+            </a>
+            <a href="https://pinterest.com/imohammedakash" target="blank">
+              <FaPinterestSquare className=" hover:rotate-12 hover:scale-105 transition-all" />
+            </a>
+            <a href="https://youtube.com/imohammedakash" target="blank">
+              <AiFillYoutube className=" hover:rotate-12 hover:scale-105 transition-all" />
+            </a>
+          </ul>
+        </div>
       </div>
     </footer>
   );

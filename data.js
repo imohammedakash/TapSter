@@ -61,6 +61,6 @@ export const iconList = [
   },
   {
     link: "https://gmail.com",
-    icon: "https://icon.horse/icon/drunken.io",
+    icon: "https://icon.horse/icon/byam.io",
   },
 ];

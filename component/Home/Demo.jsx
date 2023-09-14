@@ -17,12 +17,19 @@ import {
   MdPhone,
   MdVerified,
 } from "react-icons/md";
+import { motion } from "framer-motion";
 const Demo = () => {
   return (
-    <div className="w-full flex items-center justify-center">
-      <div className="w-[18rem] h-[33rem] outline-2 outline-black rounded-[2rem] shadow-xl border p-1 bg-slate-300 overflow-hidden">
+    <div className="w-full flex items-end relative justify-center gap-5">
+      <motion.div
+        initial={{ y: 50, opacity: 0, x: 0 }}
+        whileInView={{ y: 0, opacity: 1, x: 0 }}
+        transition={{ duration: 0.7, type: "spring", delay: 0.8 }}
+        className="h-96 rounded w-64 bg-black  "
+      ></motion.div>
+      <div className="w-[20rem] relative h-[37em] outline-2 outline-black rounded-[2rem] shadow-xl border p-1 bg-slate-300 overflow-hidden">
         <div className="h-full w-full rounded-[inherit] border-[0.4rem] border-black bg-[#141313f1]">
-          <div className="card-phone h-full w-full rounded-[2rem] py-2 relative after:content-[''] after:absolute after:w-[6rem] after:h-[0.2rem] after:bg-white after:bottom-0 after:left-[32%] after:rounded-md overflow-hidden ">
+          <div className="card-phone relative h-full w-full rounded-[2rem] py-2 after:content-[''] after:absolute after:w-[6rem] after:h-[0.2rem] after:bg-white after:bottom-0 after:left-[32%] after:rounded-md overflow-hidden ">
             <div className="flex items-center justify-between px-2">
               <span className="text-xs text-white font-extralight">9:41</span>
               <div></div>
@@ -32,15 +39,20 @@ const Demo = () => {
                 <FaSignal className="text-xs" />
               </div>
             </div>
-            <div className="w-full h-[98%] overflow-auto demo">
-              <div className="w-full flex items-center justify-start relative">
+            <motion.div
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7, type: "spring", delay: 0.8 }}
+              className="w-full h-[98%] overflow-auto demo"
+            >
+              <div className="w-full flex items-center justify-center relative">
                 <img
                   draggable={false}
                   src="https://mohammedakash.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FProfile.2dc40604.jpg&w=384&q=75"
                   alt=""
-                  className="rounded-full h-24 w-24 translate-y-6 translate-x-7 "
+                  className="rounded-full h-28 w-28 translate-y-12 "
                 />
-                <div className="absolute w-full h-20 z-[-2] top-0">
+                <div className="absolute w-full h-28 z-[-2] top-0">
                   <img
                     draggable={false}
                     src="https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?cs=srgb&dl=pexels-pixabay-531880.jpg&fm=jpg"
@@ -49,15 +61,15 @@ const Demo = () => {
                   />
                 </div>
               </div>
-              <div className="flex items-start justify-center w-full  flex-col mt-5 pb-2 px-2">
+              <div className="flex items-center justify-center w-full flex-col mt-12 pb-2 px-2">
                 <h2 className=" text-[1.1rem] mt-3 text-white flex items-center gap-1">
                   Mohammed Akash <MdVerified className="text-green-400" />
                 </h2>
-                <h3 className="text-[0.68rem] font-xs font-normal text-white mt-1">
+                <h3 className="text-[0.68rem] font-xs font-normal text-center text-white mt-1">
                   Full Stack Developer | Designer | Mentor | Youtuber
                 </h3>
                 <div className=" py-2 mt-1 ">
-                  <p className="text-[0.59rem] w-full text-start font-light text-[#ffffff]">
+                  <p className="text-[0.59rem] w-full text-center font-light text-[#ffffff]">
                     Hello, I am Akash a full stack developer and igner with 1.4
                     years of experience in all aspects of full stack
                     development, from creating stunning UI.
@@ -87,7 +99,7 @@ const Demo = () => {
                     7029793127
                   </p>
                 </div> */}
-                <div className="w-full flex items-center justify-evenly mt-4">
+                <div className="w-full flex items-center justify-evenly mt-2">
                   <div className="h-10 w-10 flex items-center justify-center text-white text-xl rounded-xl bg-white border">
                     <img
                       src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/1280px-Gmail_icon_%282020%29.svg.png"
@@ -151,19 +163,32 @@ const Demo = () => {
                   </div>
                   <div className="h-10 w-10 flex items-center justify-center text-white text-xl rounded-xl bg-white border">
                     <img
-                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png"
-                      className="h-9"
-                    />
-                  </div>
-                  <div className="h-10 w-10 flex items-center justify-center text-white text-xl rounded-xl bg-white border">
-                    <img
                       src="https://www.freeiconspng.com/uploads/black-www-icon-17.png"
                       className="h-9"
                     />
                   </div>
+                  <div className="h-10 w-10 flex items-center justify-center text-white text-xl rounded-xl bg-white border">
+                    <img src="" className="h-9" />
+                  </div>
+                </div>
+                <div className="w-full flex items-center justify-evenly mt-4">
+                  <div className="h-10 w-10 flex items-center justify-center text-white text-xl bg-white rounded-xl">
+                    <img src="" className="w-7" />
+                  </div>
+                  <div className="h-10 w-10 flex items-center justify-center text-white text-2xl overflow-hidden bg-white rounded-xl bg-[#fff0]">
+                    <img src="" className="h-10" />
+                  </div>
+                  <div className="h-10 w-10 flex items-center justify-center text-white text-xl rounded-xl bg-white border">
+                    <img src="" className="h-9" />
+                  </div>
+                  <div className="h-10 w-10 flex items-center justify-center text-white text-xl rounded-xl bg-white border">
+                    <img src="" className="h-9" />
+                  </div>
                 </div>
                 <div className="w-full">
-                  <h2 className="w-full text-center mt-3 py-[0.29rem] bg-blue-600 text-white rounded">Save</h2>
+                  <h2 className="w-full text-center mt-3 py-[0.27rem] text-[0.9rem] bg-blue-600 text-white rounded">
+                    Save
+                  </h2>
                 </div>
               </div>
               {/* <div className="mt-1 px-2 border-t py-3 border-[#ffffff2c] bg-[#ffffff09] ">
@@ -356,7 +381,7 @@ const Demo = () => {
                   </div>
                 </div>
               </div> */}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

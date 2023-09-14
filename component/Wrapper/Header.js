@@ -21,7 +21,7 @@ const Header = () => {
     <header className="w-full flex items-center justify-center">
       <div className="xl:w-[80%] w-full py-3 font-medium flex items-center justify-between xl:px-0  px-6">
         <div>
-          <h1>Logo</h1>
+          <h1 className="text-2xl first-letter:text-4xl tracking-tighter">Tapster.</h1>
         </div>
         <div className="flex items-center justify-center gap-4">
           <nav className="flex items-center gap-7 capitalize">
