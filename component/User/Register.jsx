@@ -1,16 +1,15 @@
 import Head from "next/head";
 import React, { useRef, useState } from "react";
 import { FiMail } from "react-icons/fi";
-import { BsPerson, BsTelephone } from "react-icons/bs";
+import { BsPerson } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
   AiOutlineLock,
 } from "react-icons/ai";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { register } from "@/pages/Redux/Reducers/Actions/user";
 import Link from "next/link";
 import AuthInput from "../Helper/AuthInput";
 import { FaFacebook } from "react-icons/fa";
@@ -55,11 +54,6 @@ const Register = () => {
       <Head>
         <title>Register | Tapster.in</title>
         <meta name="description" content="Hi" />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8027090957492757"
-          crossorigin="anonymous"
-        ></script>
       </Head>
       <div className="px-5 py-2">
         <a className=" flex items-end " target="_blank" href="/">

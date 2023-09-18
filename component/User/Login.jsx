@@ -54,11 +54,7 @@ const Login = () => {
       <Head>
         <title>Login | Tapster.in</title>
         <meta name="description" content="Hi" />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8027090957492757"
-          crossorigin="anonymous"
-        ></script>
+
       </Head>
       <div className="px-5 py-2">
         <a className=" flex items-end " target="_blank" href="/">
