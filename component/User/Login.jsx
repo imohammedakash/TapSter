@@ -144,14 +144,14 @@ const Login = () => {
                 </div>
                 <div className="w-full text-black flex items-center justify-center gap-2">
                   Don't have an account?{" "}
-                  <Link href="/login" className="text-blue-600">
+                  <Link href="/register" className="text-blue-600">
                     Register
                   </Link>
                 </div>
               </form>
             </div>
           </div>
-          <div className=" md:block hidden w-[50%] h-[90vh]">
+          <div className=" md:block hidden w-[50%] h-[90vh] ">
             <img
               className=" h-full w-full object-cover"
               src="https://cdn.pixabay.com/photo/2020/07/08/04/12/work-5382501_1280.jpg"

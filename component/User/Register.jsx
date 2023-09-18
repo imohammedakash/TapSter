@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { register } from "@/pages/Redux/Reducers/Actions/user";
 import Link from "next/link";
 import AuthInput from "../Helper/AuthInput";
+import { FaFacebook } from "react-icons/fa";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -69,17 +70,20 @@ const Register = () => {
       <main className=" w-full min-h-[90vh] flex items-center justify-center px-4 bg-[#fff]">
         <ToastContainer />
         <div className="flex items-center justify-center w-full ">
-          <div className="flex md:w-[50%] w-full items-center justify-center border rounded-xl mb-8 bg-white shadow-xl">
-            <div className=" lg:w-[80%] w-full flex items-center justify-center flex-col py-10 px-8 ">
+          <div className="flex md:w-[50%] w-full items-center justify-center mb-8 bg-white ">
+            <div className=" lg:w-[80%] w-full flex items-center justify-center flex-col py-10 md:px-8 px-4 ">
               <h1 className="md:text-4xl text-3xl text-center w-full whitespace-nowrap font-medium md:first-letter:text-5xl ">
                 Create Your Account
               </h1>
               <h2 className="text-base mt-2 ">
                 Lets get Started for new journey
               </h2>
-              <div className="w-full flex items-center justify-start mt-6">
+              <div className="w-full flex items-center justify-start mt-6 gap-5">
                 <div className="bg-[#0f0e0e00] border cursor-pointer text-lg flex items-center justify-center gap-2 shadow px-7 py-2 w-full rounded-full text-black hover:scale-105 transition-all">
                   <FcGoogle className="text-2xl" /> Google
+                </div>
+                <div className="bg-[#0f0e0e00] border cursor-pointer text-lg flex items-center justify-center gap-2 shadow px-7 py-2 w-full rounded-full text-black hover:scale-105 transition-all">
+                  <FaFacebook className="text-2xl text-[#3B5998]" /> Facebook
                 </div>
               </div>
               <div
@@ -162,9 +166,13 @@ const Register = () => {
               </form>
             </div>
           </div>
-                  {/* <div className="w-[50%]">
-                      <img src="https://cdn.pixabay.com/photo/2018/08/15/09/52/programmer-3607627_1280.png" alt="" />
-          </div> */}
+          <div className=" md:block hidden w-[50%] h-[85vh] ">
+            <img
+              className=" h-full w-full object-cover"
+              src="https://cdn.pixabay.com/photo/2020/07/08/04/12/work-5382501_1280.jpg"
+              alt=""
+            />
+          </div>
         </div>
       </main>
     </>
