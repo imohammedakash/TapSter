@@ -3,14 +3,21 @@ import { MdVerified } from "react-icons/md";
 import Icons from "../Helper/Icons";
 import { iconList } from "@/data";
 import { BsDot } from "react-icons/bs";
+import { useRouter } from "next/router";
 
 const Profile = () => {
   const [data, setData] = useState(iconList);
+  const [isMobile, setIsMobile] = useState(true);
   const [supportingData, setSupportingData] = useState([]);
   const [initial, setInitial] = useState(0);
   const [prev, setPrev] = useState();
+  const router = useRouter();
   let max = 16;
   useEffect(() => {
+    if (window.innerWidth >= 440) {
+      setIsMobile(false);
+      return;
+    }
     const pagination = () => {
       let end = max * (initial + 1);
       console.log("end", end);
@@ -29,7 +36,7 @@ const Profile = () => {
     }
   }, [initial]);
 
-  return (
+  return isMobile ? (
     <div className="w-full min-h-screen overflow-auto relative bg-white ">
       <div className="w-full h-32 flex justify-center items-center flex-col relative">
         <div className="w-full h-full relative">
@@ -115,6 +122,8 @@ const Profile = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <div>No Such Page Found !!</div>
   );
 };
 
