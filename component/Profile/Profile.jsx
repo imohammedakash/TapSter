@@ -91,8 +91,7 @@ const Profile = ({ id }) => {
         </h3>
         <div className=" py-2 mt-1 ">
           <p className="text-[0.7rem] w-full text-center font-light">
-            Hello, I am Akash a full stack developer and designer with 3 years of
-            experience in all aspects of full stack development
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi perferendis dolorem harum ab vero illo tempore ut assumenda quisquam possimus.
           </p>
         </div>
 
