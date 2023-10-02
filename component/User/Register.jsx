@@ -20,7 +20,6 @@ import { register } from "@/Redux/Actions/user";
 const Register = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  console.log(process.env.API_URL);
   const [data, setData] = useState();
   const loading = useSelector((state) => state.user.loading);
   useEffect(() => {
@@ -90,13 +89,11 @@ const Register = () => {
                 }}
                 onSubmit={(values, { setSubmitting }) => {
                   dispatch(register(values)).then((res) => {
-                    console.log(res);
                     if (res?.statusCode === 200) {
                       toast.success(res?.message);
                       localStorage.setItem("AccessToken", res.data.token);
                       Router.push("/");
                     }
-                    console.log(res.message)
                     toast.error(res?.message);
                   });
                 }}

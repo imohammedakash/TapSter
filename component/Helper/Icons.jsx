@@ -1,8 +1,6 @@
 import React from "react";
 
 const Icons = ({ link, bg }) => {
-  console.log(link)
-  console.log(bg)
   return (
     <a
       href={link}

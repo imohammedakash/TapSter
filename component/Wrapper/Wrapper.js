@@ -9,14 +9,12 @@ const Wrapper = ({ children }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     let AccessToken = localStorage.getItem("AccessToken");
-    console.log("AccessToken: " + AccessToken)
     if (AccessToken && !userData) {
       dispatch(getProfile()).then((res) => {
         console.log("res",res);
         if (res?.statusCode === 200) {
           setUserData(res?.data);
         }
-        console.log(res.msg)
       })
     }
   }, []);

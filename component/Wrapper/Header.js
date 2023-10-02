@@ -14,7 +14,6 @@ const CustomLink = ({ href, title, className = "" }) => {
 };
 
 const Header = ({ data }) => {
-  console.log(data);
   return (
     <header className="w-full flex items-center justify-center">
       <div className="xl:w-[80%] w-full py-3 font-medium flex items-center justify-between xl:px-0  px-6">

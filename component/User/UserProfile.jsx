@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 const UserProfile = () => {
   let data = useSelector((state) => state.user.user);
   const [userData, setUserData] = useState({});
-  console.log("Data", data);
   return (
     <Wrapper>
       <div className="my-7">
