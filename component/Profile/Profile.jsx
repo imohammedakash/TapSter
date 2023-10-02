@@ -136,7 +136,7 @@ const Profile = ({ id }) => {
               </div>
             ))}
         </div>
-        <div className="w-full mt-1 px-4">
+        <div className="w-full mt-6 px-4">
           <h2 className="w-full text-center py-3 bg-blue-600 text-white rounded">
             Save
           </h2>
