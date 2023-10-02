@@ -28,7 +28,6 @@ export const userReducer = createReducer(initialState, {
     state.loading = true;
   },
   LOADUSER_SUCCESS: (state, action) => {
-    alert("HELLO");
     state.loading = false;
     state.user = action.payload;
   },

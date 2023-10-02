@@ -1,29 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { MdVerified } from "react-icons/md";
 import Icons from "../Helper/Icons";
-import { iconList } from "@/data";
 import { BsDot } from "react-icons/bs";
-import { useRouter } from "next/router";
+import axios from "axios";
 
-const Profile = () => {
-  const [data, setData] = useState(iconList);
-  const [isMobile, setIsMobile] = useState(true);
+const Profile = ({ id }) => {
+  const [data, setData] = useState([]);
+  const [userData, setUserData] = useState([]);
   const [supportingData, setSupportingData] = useState([]);
   const [initial, setInitial] = useState(0);
   const [prev, setPrev] = useState();
-  const router = useRouter();
   let max = 16;
   useEffect(() => {
-    if (window.innerWidth >= 440) {
-      setIsMobile(false);
-      return;
-    }
-    const pagination = () => {
-      let end = max * (initial + 1);
-      console.log("end", end);
-      console.log(initial);
-      setSupportingData(data?.slice(initial * max, end));
-    };
     pagination();
 
     let prevElement = document.getElementById(`user-swipe-p-${prev}`);
@@ -34,15 +22,55 @@ const Profile = () => {
     if (element) {
       element.style.transform = "scale(2)";
     }
-  }, [initial]);
+  }, [initial, id]);
 
-  return isMobile ? (
+  const pagination = () => {
+    let end = max * (initial + 1);
+    console.log("end", end);
+    console.log(initial);
+    setSupportingData(data?.slice(initial * max, end));
+  };
+
+  useEffect(() => {
+    if (!id) {
+      return;
+    }
+    getPublicProfile();
+    pagination()
+  }, [id]);
+  const getPublicProfile = async () => {
+    try {
+      let { data } = await axios.get(
+        `https://tapster-dev.onrender.com/api/users/get-public-profile/${id}
+        `
+      );
+      data = data.data;
+      setUserData(data.user);
+      let list = [];
+      for (let i = 0; i < data.socialProfiles.length; i++) {
+        console.log();
+        let item = data.socialProfiles[i];
+        let obj = {
+          link: item.url,
+          icon: item["template"]["image"],
+        };
+        list.push(obj);
+      }
+      setData(list);
+      let end = max * (initial + 1);
+      setSupportingData(list?.slice(initial * max, end));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log("data==>", data);
+  return (
     <div className="w-full min-h-screen overflow-auto relative bg-white ">
       <div className="w-full h-32 flex justify-center items-center flex-col relative">
         <div className="w-full h-full relative">
           <img
             draggable={false}
-            src="https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?cs=srgb&dl=pexels-pixabay-531880.jpg&fm=jpg"
+            src={userData.coverPic}
             alt=""
             className="h-full w-full object-cover"
           />
@@ -50,7 +78,7 @@ const Profile = () => {
         <div className="rounded-full h-40 w-40 absolute top-10 overflow-hidden">
           <img
             draggable={false}
-            src="https://mohammedakash.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FProfile.2dc40604.jpg&w=384&q=75"
+            src={userData.profilePic}
             alt=""
             className="h-full w-full object-cover"
           />
@@ -58,7 +86,8 @@ const Profile = () => {
       </div>
       <div className="flex items-center justify-center w-full  flex-col mt-20 pb-2 px-2 ">
         <h2 className=" text-[1.5rem] mt-3 text-center  flex items-center gap-1">
-          Mohammed Akash <MdVerified className="text-green-400 text-[1.3rem]" />
+          {userData.firstName} {userData.lastName}{" "}
+          <MdVerified className="text-green-400 text-[1.3rem]" />
         </h2>
         <h3 className="text-[0.68rem] font-xs font-normal text-center w-full  mt-1">
           Full Stack Developer | Designer | Mentor | Youtuber
@@ -97,7 +126,7 @@ const Profile = () => {
         </div>
 
         <div className="flex items-center justify-center">
-          {data.length > max &&
+          {data?.length > max &&
             Array.from({ length: Math.ceil(data?.length / max) }, (v, i) => (
               <div
                 key={i}
@@ -122,8 +151,6 @@ const Profile = () => {
         </div>
       </div>
     </div>
-  ) : (
-    <div>No Such Page Found !!</div>
   );
 };
 

@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <Wrapper>
       <div className="w-full flex items-center justify-center">
-        <div className="xl:w-[80%] w-full py-3 font-medium flex flex-col items-center justify-center xl:px-0  px-6">
+        <div className="w-full py-3 font-medium flex flex-col items-center justify-center xl:px-0  px-6">
           <Landing />
           <Demo />
           <Map />
