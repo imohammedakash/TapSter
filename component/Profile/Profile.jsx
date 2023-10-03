@@ -51,7 +51,7 @@ const Profile = ({ id }) => {
       list.push(
         {
           link: `mailto:${data.user.email}`,
-          icon: "https://cdn1.iconfinder.com/data/icons/email-color-set/24/Mail_email_color_c-256.png",
+          icon: "https://cdn4.iconfinder.com/data/icons/address-book-providers-in-colors/512/gmail-64.png",
         },
         {
           link: `tel:${data.user.phoneNo}`,
