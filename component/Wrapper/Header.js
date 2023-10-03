@@ -13,17 +13,7 @@ const CustomLink = ({ href, title, className = "" }) => {
   );
 };
 
-const Header = () => {
-  const [data, setData] = useState([]);
-  const router = useRouter();
-  useEffect(() => {
-    let userData = localStorage.getItem("userData");
-    console.log(userData)
-    if (!userData) {
-      return;
-    }
-    setData(JSON.parse(userData));
-  }, []);
+const Header = ({data}) => {
   return (
     <header className="w-full flex items-center justify-center">
       <div className="xl:w-[80%] w-full py-3 font-medium flex items-center justify-between xl:px-0  px-6">

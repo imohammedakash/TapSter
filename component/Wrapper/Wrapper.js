@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { getProfile } from "@/Redux/Actions/user";
 
 const Wrapper = ({ children }) => {
+  const [data, setData] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
     let AccessToken = localStorage.getItem("AccessToken");
@@ -14,14 +15,16 @@ const Wrapper = ({ children }) => {
         console.log("res", res);
         if (res?.statusCode === 200) {
           localStorage.setItem("userData", JSON.stringify(res.data));
+          setData(res.data);
         }
       });
+      return
     }
-
+    setData(JSON.parse(localStorage.getItem("userData")));
   }, []);
   return (
     <div>
-      <Header />
+      <Header data={data} />
       <div className="w-full flex items-center justify-center">
         <div className="xl:w-[80%] w-full">{children}</div>
       </div>
