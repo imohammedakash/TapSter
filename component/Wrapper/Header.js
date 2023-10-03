@@ -20,7 +20,6 @@ const Header = () => {
     let userData = localStorage.getItem("userData");
     console.log(userData)
     if (!userData) {
-      router.back();
       return;
     }
     setData(JSON.parse(userData));

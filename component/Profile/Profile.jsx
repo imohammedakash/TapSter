@@ -24,7 +24,7 @@ const Profile = ({ id }) => {
     if (element) {
       element.style.transform = "scale(2)";
     }
-  }, [initial, id]);
+  }, [initial]);
 
   const pagination = () => {
     let end = max * (initial + 1);
@@ -36,7 +36,6 @@ const Profile = ({ id }) => {
       return;
     }
     getPublicProfile();
-    pagination();
   }, [id]);
   const getPublicProfile = async () => {
     try {
@@ -127,7 +126,6 @@ const Profile = ({ id }) => {
             </div>
           ))}
           {
-            //   supportingData.length < max &&
             Array.from({ length: max - supportingData.length }, (v, i) => (
               <div
                 key={i}
