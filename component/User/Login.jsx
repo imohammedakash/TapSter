@@ -77,9 +77,10 @@ const Register = () => {
                 onSubmit={(values, { setSubmitting }) => {
                   dispatch(LoginUser(values)).then((res) => {
                     if (res?.statusCode === 200) {
-                      toast.success(res?.msg);
+                      toast.success(res?.message);
                       localStorage.setItem("AccessToken", res.data.token);
                       Router.push("/");
+                      return
                     }
                     console.log(res.message);
                     toast.error(res?.message);

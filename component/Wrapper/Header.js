@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 const CustomLink = ({ href, title, className = "" }) => {
   const router = useRouter();
   return (
@@ -13,7 +13,18 @@ const CustomLink = ({ href, title, className = "" }) => {
   );
 };
 
-const Header = ({ data }) => {
+const Header = () => {
+  const [data, setData] = useState([]);
+  const router = useRouter();
+  useEffect(() => {
+    let userData = localStorage.getItem("userData");
+    console.log(userData)
+    if (!userData) {
+      router.back();
+      return;
+    }
+    setData(JSON.parse(userData));
+  }, []);
   return (
     <header className="w-full flex items-center justify-center">
       <div className="xl:w-[80%] w-full py-3 font-medium flex items-center justify-between xl:px-0  px-6">
@@ -34,7 +45,7 @@ const Header = ({ data }) => {
         <div>
           {data ? (
             <Link
-              href={`/profile/${data.firstName.toLowerCase()}-${data.lastName.toLowerCase()}`}
+              href={`/profile/${data?.firstName?.toLowerCase()}-${data?.lastName?.toLowerCase()}`}
             >
               <div className="h-9 w-9 rounded-full border">
                 <img
@@ -46,9 +57,9 @@ const Header = ({ data }) => {
                   }
                   alt={
                     data
-                      ? data.firstName.toLowerCase() +
+                      ? data?.firstName?.toLowerCase() +
                         "-" +
-                        data.lastName.toLowerCase() +
+                        data?.lastName?.toLowerCase() +
                         "-image"
                       : "user-image"
                   }

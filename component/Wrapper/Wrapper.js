@@ -5,22 +5,23 @@ import { useDispatch } from "react-redux";
 import { getProfile } from "@/Redux/Actions/user";
 
 const Wrapper = ({ children }) => {
-  const [userData, setUserData] = useState();
   const dispatch = useDispatch();
   useEffect(() => {
     let AccessToken = localStorage.getItem("AccessToken");
+    let userData = localStorage.getItem("userData");
     if (AccessToken && !userData) {
       dispatch(getProfile()).then((res) => {
-        console.log("res",res);
+        console.log("res", res);
         if (res?.statusCode === 200) {
-          setUserData(res?.data);
+          localStorage.setItem("userData", JSON.stringify(res.data));
         }
-      })
+      });
     }
+
   }, []);
   return (
     <div>
-      <Header data={userData} />
+      <Header />
       <div className="w-full flex items-center justify-center">
         <div className="xl:w-[80%] w-full">{children}</div>
       </div>

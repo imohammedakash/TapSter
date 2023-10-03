@@ -3,12 +3,14 @@ import { MdVerified } from "react-icons/md";
 import Icons from "../Helper/Icons";
 import { BsDot } from "react-icons/bs";
 import axios from "axios";
+import Loader from "../Helper/Loader";
 
 const Profile = ({ id }) => {
   const [data, setData] = useState([]);
   const [userData, setUserData] = useState([]);
   const [supportingData, setSupportingData] = useState([]);
   const [initial, setInitial] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [prev, setPrev] = useState();
   let max = 16;
   useEffect(() => {
@@ -38,14 +40,24 @@ const Profile = ({ id }) => {
   }, [id]);
   const getPublicProfile = async () => {
     try {
+      setLoading(true);
       let { data } = await axios.get(
         `https://tapster-dev.onrender.com/api/users/get-public-profile/${id}
         `
       );
       data = data.data;
-      console.log(data);
       setUserData(data.user);
       let list = [];
+      list.push(
+        {
+          link: `mailto:${data.user.email}`,
+          icon: "https://cdn1.iconfinder.com/data/icons/email-color-set/24/Mail_email_color_c-256.png",
+        },
+        {
+          link: `tel:${data.user.phoneNo}`,
+          icon: "https://cdn4.iconfinder.com/data/icons/social-media-2097/94/phone-512.png",
+        }
+      );
       for (let i = 0; i < data.socialProfiles.length; i++) {
         let item = data.socialProfiles[i];
         let obj = {
@@ -55,13 +67,16 @@ const Profile = ({ id }) => {
         list.push(obj);
       }
       setData(list);
+      setLoading(false);
       let end = max * (initial + 1);
       setSupportingData(list?.slice(initial * max, end));
     } catch (error) {
       console.log(error);
     }
   };
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <div className="w-full min-h-screen overflow-auto relative bg-white ">
       <div className="w-full h-32 flex justify-center items-center flex-col relative">
         <div className="w-full h-full relative">
@@ -91,7 +106,9 @@ const Profile = ({ id }) => {
         </h3>
         <div className=" py-2 mt-1 ">
           <p className="text-[0.7rem] w-full text-center font-light">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi perferendis dolorem harum ab vero illo tempore ut assumenda quisquam possimus.
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi
+            perferendis dolorem harum ab vero illo tempore ut assumenda quisquam
+            possimus.
           </p>
         </div>
 
