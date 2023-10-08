@@ -32,8 +32,8 @@ const Details = ({ id }) => {
   };
   return (
     <Wrapper>
-      <div className="mt-10 mb-32 flex justify-center gap-3">
-        <div className="w-1/2">
+      <div className="mt-10 mb-32 flex justify-center md:flex-row flex-col md:gap-3  px-2">
+        <div className="md:w-1/2 w-full flex md:items-start items-center justify-center flex-col">
           <div className="flex items-center h-[27rem] w-full justify-start ">
             <img
               className=" h-full w-full object-contain transition-all rounded"
@@ -41,7 +41,7 @@ const Details = ({ id }) => {
               alt=""
             />
           </div>
-          <div className="flex items-center justify-start mt-5 gap-4">
+          <div className="flex items-center justify-start md:mt-5 mt-2 gap-4">
             {productData?.imageList?.map((image) => (
               <img
                 onClick={() => setActiveImage(image)}
@@ -54,7 +54,7 @@ const Details = ({ id }) => {
             ))}
           </div>
         </div>
-        <div className="w-1/2">
+        <div className="md:w-1/2 w-full md:mt-0 mt-6">
           <h1 className="text-3xl font-medium">{productData?.name}</h1>
           <h2 className="mt-4 text-2xl">Rs. {productData?.price}</h2>
           <div className="flex items-start flex-col gap-2 mt-4">
