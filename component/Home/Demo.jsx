@@ -20,14 +20,14 @@ import {
 import { motion } from "framer-motion";
 const Demo = () => {
   return (
-    <div className="w-full flex items-end relative justify-center gap-5">
+    <div className="w-full flex md:items-end items-center md:flex-row flex-col relative justify-center gap-5">
       <motion.div
         initial={{ y: 50, opacity: 0, x: 0 }}
         whileInView={{ y: 0, opacity: 1, x: 0 }}
         transition={{ duration: 0.7, type: "spring", delay: 0.8 }}
-        className="h-96 rounded w-64 bg-black  "
+        className="md:h-96 h-36 rounded w-64 bg-black  "
       ></motion.div>
-      <div className="w-[20rem] relative h-[37em] outline-2 outline-black rounded-[2rem] shadow-xl border p-1 bg-slate-300 overflow-hidden">
+      <div className="w-[20rem]  relative h-[37rem] outline-2 outline-black rounded-[2rem] shadow-xl border p-1 bg-slate-300 overflow-hidden">
         <div className="h-full w-full rounded-[inherit] border-[0.4rem] border-black bg-[#141313f1]">
           <div className="card-phone relative h-full w-full rounded-[2rem] py-2 after:content-[''] after:absolute after:w-[6rem] after:h-[0.2rem] after:bg-white after:bottom-0 after:left-[32%] after:rounded-md overflow-hidden ">
             <div className="flex items-center justify-between px-2">

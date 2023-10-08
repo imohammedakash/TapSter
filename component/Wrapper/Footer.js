@@ -16,9 +16,9 @@ const Footer = () => {
   return (
     <footer className="w-full border-t">
       <div className=" flex flex-col items-center justify-center py-8 flex-wrap">
-        <div className="w-full flex items-start justify-around flex-wrap gap-7">
+        <div className="w-full flex items-start md:justify-around justify-center flex-wrap gap-7">
           <div className="w-1/4 flex items-center justify-center">
-            <div className="flex items-start justify-center flex-col gap-3">
+            <div className="flex md:items-start items-center justify-center flex-col gap-3">
               <h2 className="font-semibold text-lg whitespace-nowrap">
                 Quick Links
               </h2>
@@ -30,8 +30,8 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-          <div className="flex items-center justify-center whitespace-nowrap">
-            <div className="flex items-start justify-center flex-col gap-3">
+          <div className="flex md:items-center items-center justify-center whitespace-nowrap">
+            <div className="flex md:items-start items-center justify-center flex-col gap-3">
               <h2 className="font-semibold text-lg whitespace-nowrap">
                 Know Me
               </h2>
@@ -43,12 +43,12 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex items-center justify-center">
-            <div className="flex items-start justify-center flex-col gap-3"></div>
+            <div className="flex md:items-start items-center justify-center flex-col gap-3"></div>
           </div>
           <div className="flex items-start justify-center flex-col gap-4">
             <h2 className="font-semibold text-lg">Newsletter</h2>
             <div className="">
-              <div className="flex">
+              <div className="flex border">
                 <input
                   type="email"
                   placeholder="Enter your email"
@@ -67,7 +67,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex items-center justify-center relative py-6 after:content-[''] after:absolute after:w-[80%] after:h-[0.5px] after:bg-[#a6a6a695] after:top-0">
-        <div className="py-3 flex items-center justify-between w-[80%]">
+        <div className="py-3 flex items-center justify-between md:flex-row flex-col w-[80%]">
           <div className="flex items-center gap-2">
             {/* <a className=" first-letter:text-xl " target="_blank" href="/">
               Tapster.
@@ -76,7 +76,7 @@ const Footer = () => {
               copyright © {new Date().getFullYear()} {" "} tapster.in
             </span>
           </div>
-          <ul className="flex items-center justify-center text-[#252323d0] gap-5 text-2xl">
+          <ul className="flex items-center justify-center text-[#252323d0] gap-5 md:text-2xl text-lg md:mt-0 mt-4">
             <a href="https://linkedin.com/in/mohammedakash" target="blank">
               <AiFillLinkedin className="  hover:rotate-12 hover:scale-105 transition-all" />
             </a>

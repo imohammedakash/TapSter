@@ -7,9 +7,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 const Landing = () => {
   return (
-    <div className="w-full h-[86vh] mt-5 flex">
-      <div className="w-1/2 h-full flex items-start justify-center flex-col  ">
-        <div className="flex gap-5">
+    <div className="w-full md:h-[86vh] mt-5 flex md:flex-row flex-col">
+      <div className="md:w-1/2 w-full h-full flex items-start justify-center flex-col  ">
+        <div className="flex items-start justify-start gap-5">
           <div className="h-10 w-10 flex items-center justify-center bg-[#000000a0]">
             <MdFingerprint className="text-2xl text-white " />
           </div>
@@ -20,23 +20,23 @@ const Landing = () => {
           </h2>
         </div>
         <div className="">
-          <div className="flex items-center gap-3 justify-end translate-x-36">
-            <div className="flex items-center gap-2 border shadow-xl px-4 py-2 rounded card">
+          <div className="flex items-center gap-3 md:justify-end justify-center md:translate-x-36 md:my-0 my-6 ">
+            <div className="flex items-center gap-2 border md:px-4 px-3 text-sm py-2 shadow rounded md:card">
               <BsPersonVcard />
               Take
             </div>
             <BsArrowRight />
-            <div className="flex items-center gap-2 border shadow-xl px-4 py-2 rounded card">
+            <div className="flex items-center gap-2 border  md:px-4 px-3 text-sm py-2 shadow rounded md:card">
               <MdTapAndPlay />
               Tap
             </div>
             <BsArrowRight />
-            <div className="flex items-center gap-2 border shadow-xl px-4 py-2 rounded card">
+            <div className="flex items-center gap-2 border md:px-4 px-3 text-sm py-2 shadow rounded md:card">
               <FaMobile />
               View
             </div>
           </div>
-          <h1 className="text-7xl" style={{ lineHeight: "5rem" }}>
+          <h1 className="md:text-7xl text-5xl md:text-start text-center md:my-0 my-4 font-medium">
             Find Professionals in Every Field
           </h1>
         </div>
@@ -57,12 +57,12 @@ const Landing = () => {
           <span>1.67L active customer among 14 nations</span>
         </div>
       </div>
-      <div className="w-1/2 h-full flex items-center justify-center flex-col ">
-        <div className=" h-[25rem] w-full relative flex items-end justify-end after:content-[''] after:absolute after:h-[25rem] after:w-[22rem] after:-skew-x-[18deg] after:z-[-2] after:shadow-xl after:bg-opacity-10 after:backdrop-blur-md after:border-t after:border-l after:bg-[#000] after:border-[rgba(255, 255, 255, 0.1)] after:bg-white ">
+      <div className="md:w-1/2 w-full h-full flex items-center justify-center flex-col ">
+        <div className="h-[25rem] w-full relative flex md:items-end items-center justify-center md:justify-end  ">
           <Image
             draggable={false}
             src={women}
-            className="h-[30rem] w-[25rem] object-contain"
+            className="md:h-[30rem] h-full md:w-[25rem] object-contain"
             alt="home-page-women"
           />
         </div>

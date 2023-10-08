@@ -4,6 +4,7 @@ import Icons from "../Helper/Icons";
 import { BsDot } from "react-icons/bs";
 import axios from "axios";
 import Loader from "../Helper/Loader";
+import { useRouter } from "next/router";
 
 const Profile = ({ id }) => {
   const [data, setData] = useState([]);
@@ -125,14 +126,12 @@ const Profile = ({ id }) => {
               <Icons bg={i.icon} link={i.link} />
             </div>
           ))}
-          {
-            Array.from({ length: max - supportingData.length }, (v, i) => (
-              <div
-                key={i}
-                className="h-16 w-16 flex items-center justify-center text-xl rounded-xl mt-5 shadow-xl bg-white border p-1"
-              ></div>
-            ))
-          }
+          {Array.from({ length: max - supportingData.length }, (v, i) => (
+            <div
+              key={i}
+              className="h-16 w-16 flex items-center justify-center text-xl rounded-xl mt-5 shadow-xl bg-white border p-1"
+            ></div>
+          ))}
         </div>
 
         <div className="flex items-center justify-center">

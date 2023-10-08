@@ -77,10 +77,11 @@ export const getProfile = () => async (dispatch) => {
     const { data } = await axios.get(API_URL + "/api/users/profile", {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${AccessToken}`, // Replace with your actual authorization token
+        Authorization: `Bearer ${AccessToken}`,
       },
       withCredentials: true,
     });
+    localStorage.setItem("userData", JSON.stringify(data.data));
     dispatch({
       type: "LOADUSER_SUCCESS",
       payload: data?.data,
@@ -89,5 +90,36 @@ export const getProfile = () => async (dispatch) => {
   } catch (err) {
     dispatch({ type: "LOADUSER_FAILURE" });
     return err?.response?.data;
+  }
+};
+
+export const updateProfile = (credentials) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "UPDATEUSER_REQUEST",
+    });
+    console.log("credentials", credentials);
+    let AccessToken = localStorage.getItem("AccessToken");
+    const { data } = await axios.put(
+      API_URL + "/api/users/profile",
+      credentials,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${AccessToken}`,
+        },
+        withCredentials: true,
+      }
+    );
+    console.log(data);
+    dispatch({
+      type: "UPDATEUSER_SUCCESS",
+      payload: data?.data,
+    });
+    return data;
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: "UPDATEUSER_FAILURE" });
+    return err?.response?.data ? err?.response?.data : err.message;
   }
 };

@@ -14,7 +14,6 @@ const Wrapper = ({ children }) => {
       dispatch(getProfile()).then((res) => {
         console.log("res", res);
         if (res?.statusCode === 200) {
-          localStorage.setItem("userData", JSON.stringify(res.data));
           setData(res.data);
         }
       });

@@ -99,7 +99,7 @@ const Register = () => {
                 }}
               >
                 <Form className=" w-full flex flex-col gap-3">
-                  <div className="flex gap-3">
+                  <div className="flex  items-start justify-start gap-3">
                     <div className=" w-full flex flex-col gap-4">
                       <AuthInput
                         label="First Name"
@@ -132,7 +132,7 @@ const Register = () => {
                     </div>
                   </div>
 
-                  <div className="flex gap-3">
+                  <div className="flex items-start justify-start gap-3">
                     <AuthInput
                       type="email"
                       name="email"
@@ -148,7 +148,7 @@ const Register = () => {
                     className="text-red-600 text-xs"
                   />
 
-                  <div className="flex gap-4 text-white">
+                  <div className="flex items-start justify-start gap-4 text-white">
                     <div className="flex flex-col gap-2 items-start justify-center flex-1">
                       <label htmlFor="" className=" text-black">
                         Password <span className="text-red-500">*</span>
@@ -181,7 +181,7 @@ const Register = () => {
                     </div>
                   </div>
 
-                  <div className="w-full flex gap-3 mt-2">
+                  <div className="w-full flex items-start justify-start gap-3 mt-2">
                     <AuthInput
                       label="Company"
                       Icon={MdOutlineMapsHomeWork}
