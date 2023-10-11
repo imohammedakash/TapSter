@@ -95,23 +95,43 @@ const UserProfile = () => {
     if (window.innerWidth < 768) {
       setShowPreview(false);
     }
-    let data = localStorage.getItem("userData");
-    if (!data) {
+    let token = localStorage.getItem("AccessToken");
+    if (!token) {
       router.push("/login");
+    } else {
+      getProfileData();
     }
-    data = JSON.parse(data);
-    setUserData({
-      firstName: data?.firstName,
-      lastName: data?.lastName,
-      company: data?.company,
-      designation: data?.designation,
-      profilePic: data?.profilePic || "",
-      coverPic: data?.coverPic || "",
-      email: data?.email,
-      about: data?.about || "",
-      phoneNo: data?.phoneNo || "",
-    });
   }, []);
+  const getProfileData = () => {
+    dispatch(getProfile()).then((res) => {
+      const { data } = res;
+      setUserData({
+        firstName: data?.firstName,
+        lastName: data?.lastName,
+        company: data?.company,
+        designation: data?.designation,
+        profilePic: data?.profilePic || "",
+        coverPic: data?.coverPic || "",
+        email: data?.email,
+        about: data?.about || "",
+        phoneNo: data?.phoneNo || "",
+      });
+    });
+  };
+  const handleSubmit = (values, { setSubmitting }) => {
+    delete values?.email;
+    delete values?.about;
+    values["phoneNo"] = values?.phoneNo.toString();
+    dispatch(updateProfile(values)).then((res) => {
+      console.log("Profile", res);
+      if (res?.statusCode === 200) {
+        toast.success(res?.message);
+        getProfileData();
+        return;
+      }
+      toast.error(res?.message);
+    });
+  };
   return (
     <Wrapper>
       <div className="my-7 min-h-screen px-2">
@@ -163,21 +183,7 @@ const UserProfile = () => {
                 }
                 return errors;
               }}
-              onSubmit={(values, { setSubmitting }) => {
-                console.log("Values", values);
-                delete values?.email;
-                delete values?.about;
-                values["phoneNo"] = values?.phoneNo.toString();
-                dispatch(updateProfile(values)).then((res) => {
-                  console.log("Profile", res);
-                  if (res?.statusCode === 200) {
-                    toast.success(res?.message);
-                    dispatch(getProfile());
-                    return;
-                  }
-                  toast.error(res?.message);
-                });
-              }}
+              onSubmit={handleSubmit}
             >
               <Form className=" w-full flex flex-col gap-3">
                 <div className="flex gap-3 items-center justify-center">
