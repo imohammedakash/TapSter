@@ -144,18 +144,17 @@ const Header = ({ data }) => {
               )}
             </div>
           ) : (
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-5">
+              <Link
+                href="/cart"
+              >
+                <BsCart2 className="text-2xl text-[#191919]" />
+              </Link>
               <Link
                 href="/login"
                 className={` px-4 rounded py-[0.4rem] font-normal  border transition-all `}
               >
                 Login
-              </Link>
-              <Link
-                href="/signup"
-                className={` font-normal px-4 rounded py-[0.4rem] border transition-all whitespace-nowrap`}
-              >
-                Sign up
               </Link>
             </div>
           )}
