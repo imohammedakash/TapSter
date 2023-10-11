@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FiMail } from "react-icons/fi";
+import { FiMail, FiPhone } from "react-icons/fi";
 import { BsPerson, BsPersonWorkspace } from "react-icons/bs";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Router, useRouter } from "next/router";
@@ -10,28 +10,104 @@ import Wrapper from "../Wrapper/Wrapper";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile, updateProfile } from "@/Redux/Actions/user";
 
+const PreviewPage = ({ userData }) => {
+  return (
+    <div className="w-full">
+      <div className="w-full h-[8rem] border rounded-t">
+        <img
+          className="h-full w-full object-cover rounded-[inherit]"
+          src={
+            userData?.coverPic ??
+            "https://cdn.pixabay.com/photo/2015/08/31/08/33/header-915128_960_720.jpg"
+          }
+          alt={
+            userData
+              ? userData?.firstName?.toLowerCase() +
+                "-" +
+                userData?.lastName?.toLowerCase() +
+                "-image"
+              : "user-image"
+          }
+        />
+      </div>
+      <div className="md:h-32 md:w-32 h-28 w-28 rounded-full border -translate-y-1/2 md:translate-x-12 translate-x-8">
+        <img
+          className="h-full w-full object-cover rounded-[inherit]"
+          src={
+            userData?.profilePic ??
+            "https://iau.edu.lc/wp-content/uploads/2016/09/dummy-image.jpg"
+          }
+          alt={
+            userData
+              ? userData?.firstName?.toLowerCase() +
+                "-" +
+                userData?.lastName?.toLowerCase() +
+                "-image"
+              : "user-image"
+          }
+        />
+      </div>
+      <div className="mt-[-3rem]">
+        <h1 className="m-0 md:text-3xl text-xl font-medium">
+          {userData?.firstName} {userData?.lastName}
+        </h1>
+      </div>
+      <div className="mt-2">
+        <h5 className="mt-1 text-sm text-[#6a6a6a] font-normal">
+          {userData?.designation} | {userData?.company}
+        </h5>
+      </div>
+
+      <div className="mt-5">
+        <div className="flex items-center w-full mt-2 text-sm gap-3">
+          <FiMail className="text-xl text-[#000000c1]" />
+          <a href={`mailto:${userData.email}`}> {userData.email}</a>
+        </div>
+      </div>
+      <div className="">
+        <div className="flex items-center w-full mt-3 text-sm gap-3">
+          <FiPhone className="text-xl text-[#000000c1]" />
+          <a href={`tel:${userData.phoneNo}`}> {userData.phoneNo}</a>
+        </div>
+      </div>
+      <div className="mt-5">
+        <h2 className="font-medium">About</h2>
+        <h5 className="mt-1 text-sm text-[#6a6a6a] font-normal">
+          Hi, I'm Akash, a full-stack developer and UI/UX designer who has a
+          love for developing engaging, useful, and appealing digital
+          experiences.
+        </h5>
+      </div>
+    </div>
+  );
+};
+
 const UserProfile = () => {
   const [userData, setUserData] = useState({});
   const loading = useSelector((state) => state.user.loading);
   const [activeProfile, setActiveProfile] = useState("general");
+  const [showPreview, setShowPreview] = useState(true);
   const router = useRouter();
   const dispatch = useDispatch();
   useEffect(() => {
+    if (window.innerWidth < 768) {
+      setShowPreview(false);
+    }
     let data = localStorage.getItem("userData");
     if (!data) {
       router.push("/login");
     }
     data = JSON.parse(data);
     setUserData({
-      firstName: data.firstName,
-      lastName: data.lastName,
-      company: data.company,
-      designation: data.designation,
-      profilePic: data.profilePic || "",
-      coverPic: data.coverPic || "",
-      email: data.email,
-      about: data.about || "",
-      phoneNo: data.phoneNo || "",
+      firstName: data?.firstName,
+      lastName: data?.lastName,
+      company: data?.company,
+      designation: data?.designation,
+      profilePic: data?.profilePic || "",
+      coverPic: data?.coverPic || "",
+      email: data?.email,
+      about: data?.about || "",
+      phoneNo: data?.phoneNo || "",
     });
   }, []);
   return (
@@ -57,75 +133,45 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
-        <div className=" flex items-start justify-between">
-          <div className="w-[40%] md:block hidden">
-            <div className="w-full h-[8rem] border rounded-t">
-              <img
-                className="h-full w-full object-cover rounded-[inherit]"
-                src={
-                  userData?.coverPic
-                    ? userData?.coverPic
-                    : "https://cdn.pixabay.com/photo/2015/08/31/08/33/header-915128_960_720.jpg"
-                }
-                alt={
-                  userData
-                    ? userData?.firstName?.toLowerCase() +
-                      "-" +
-                      userData?.lastName?.toLowerCase() +
-                      "-image"
-                    : "user-image"
-                }
-              />
+        <button
+          className="my-4 px-3 bg-blue-600 text-white py-1 rounded shadow md:hidden "
+          onClick={() => setShowPreview(!showPreview)}
+        >
+          {showPreview ? "Hide" : "Preview"}
+        </button>
+        <div className=" relative flex items-start justify-between md:p-0">
+          {showPreview ? (
+            <div className="md:static absolute w-full md:w-[40%] bg-white h-[70vh] border md:border-none shadow-xl md:shadow-none rounded md:p-0 py-4 px-4">
+              <PreviewPage userData={userData} />
             </div>
-            <div className="h-32 w-32 rounded-full border -translate-y-1/2 translate-x-12">
-              <img
-                className="h-full w-full object-cover rounded-[inherit]"
-                src={
-                  userData?.profilePic
-                    ? userData?.profilePic
-                    : "https://iau.edu.lc/wp-content/uploads/2016/09/dummy-image.jpg"
-                }
-                alt={
-                  userData
-                    ? userData?.firstName?.toLowerCase() +
-                      "-" +
-                      userData?.lastName?.toLowerCase() +
-                      "-image"
-                    : "user-image"
-                }
-              />
-            </div>
-            <div className="mt-[-3rem]">
-              <h1 className="m-0 text-xl font-medium">
-                {userData?.firstName} {userData?.lastName}
-              </h1>
-            </div>
-          </div>
+          ) : (
+            ""
+          )}
           <div className="md:w-[58%] w-full">
             <Formik
               initialValues={userData}
               enableReinitialize={true}
               validate={(values) => {
                 const errors = {};
-                if (!values.firstName) {
+                if (!values?.firstName) {
                   errors.firstName = "First name required*";
                 }
-                if (!values.lastName) {
+                if (!values?.lastName) {
                   errors.lastName = "Last name required*";
                 }
                 return errors;
               }}
               onSubmit={(values, { setSubmitting }) => {
                 console.log("Values", values);
-                delete values.email;
-                delete values.about;
-                values["phoneNo"] = values.phoneNo.toString();
+                delete values?.email;
+                delete values?.about;
+                values["phoneNo"] = values?.phoneNo.toString();
                 dispatch(updateProfile(values)).then((res) => {
                   console.log("Profile", res);
                   if (res?.statusCode === 200) {
                     toast.success(res?.message);
-                    dispatch(getProfile())
-                    return
+                    dispatch(getProfile());
+                    return;
                   }
                   toast.error(res?.message);
                 });
@@ -138,8 +184,7 @@ const UserProfile = () => {
                       Profile
                     </label>
                     <div className="flex items-center justify-center gap-4 border py-3 px-4 w-full">
-                      <Field
-                        name="profilePic"
+                      <input
                         type="file"
                         className="w-full outline-none border-none bg-transparent"
                       />
@@ -150,8 +195,7 @@ const UserProfile = () => {
                       Banner
                     </label>
                     <div className="flex items-center justify-center gap-4 border py-3 px-4 w-full">
-                      <Field
-                        name="coverPic"
+                      <input
                         type="file"
                         placeholder="Please tell Something about you"
                         className="w-full outline-none border-none bg-transparent"
@@ -210,7 +254,7 @@ const UserProfile = () => {
                     type="number"
                     name="phoneNo"
                     label="Phone"
-                    Icon={FiMail}
+                    Icon={FiPhone}
                     placeholder="Enter Your phone number"
                   />
                 </div>
