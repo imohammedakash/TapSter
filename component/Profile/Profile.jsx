@@ -4,7 +4,7 @@ import Icons from "../Helper/Icons";
 import { BsDot } from "react-icons/bs";
 import axios from "axios";
 import Loader from "../Helper/Loader";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const Profile = ({ id }) => {
   const [data, setData] = useState([]);
@@ -13,6 +13,7 @@ const Profile = ({ id }) => {
   const [initial, setInitial] = useState(0);
   const [loading, setLoading] = useState(false);
   const [prev, setPrev] = useState();
+  const router = useRouter();
   let max = 16;
   useEffect(() => {
     pagination();
@@ -71,7 +72,8 @@ const Profile = ({ id }) => {
       let end = max * (initial + 1);
       setSupportingData(list?.slice(initial * max, end));
     } catch (error) {
-      console.log(error);
+      console.log("Error", error.response.data);
+      router.back();
     }
   };
   return loading ? (
@@ -102,7 +104,7 @@ const Profile = ({ id }) => {
           <MdVerified className="text-green-400 text-[1.3rem]" />
         </h2>
         <h3 className="text-[0.68rem] font-xs font-normal text-center w-full  mt-1">
-          {userData?.designation ?? ''} | {userData.company ?? ''}
+          {userData?.designation ?? ""} | {userData.company ?? ""}
         </h3>
         <div className=" py-2 mt-1 ">
           <p className="text-[0.7rem] w-full text-center font-light">
