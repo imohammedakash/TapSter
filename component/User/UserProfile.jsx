@@ -15,10 +15,11 @@ const PreviewPage = ({ userData }) => {
     <div className="w-full">
       <div className="w-full h-[8rem] border rounded-t">
         <img
-          className="h-full w-full object-cover rounded-[inherit]"
+          className="h-full w-full object-cover rounded-[inherit] bg-blue-600"
           src={
-            userData?.coverPic ??
-            "https://cdn.pixabay.com/photo/2015/08/31/08/33/header-915128_960_720.jpg"
+            userData?.coverPic === ""
+              ? "https://cdn.pixabay.com/photo/2015/08/31/08/33/header-915128_960_720.jpg"
+              : userData?.coverPic
           }
           alt={
             userData
@@ -32,10 +33,11 @@ const PreviewPage = ({ userData }) => {
       </div>
       <div className="md:h-32 md:w-32 h-28 w-28 rounded-full border -translate-y-1/2 md:translate-x-12 translate-x-8">
         <img
-          className="h-full w-full object-cover rounded-[inherit]"
+          className="h-full w-full object-cover rounded-[inherit] bg-green-600"
           src={
-            userData?.profilePic ??
-            "https://iau.edu.lc/wp-content/uploads/2016/09/dummy-image.jpg"
+            userData?.profilePic === ""
+              ? "https://iau.edu.lc/wp-content/uploads/2016/09/dummy-image.jpg"
+              : userData?.profilePic
           }
           alt={
             userData
