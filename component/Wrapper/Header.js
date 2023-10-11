@@ -57,7 +57,7 @@ const Header = ({ data }) => {
           {data ? (
             <div className="relative md:w-[15rem] ">
               <div
-                className="md:w-[10rem] flex items-center justify-between gap-8 cursor-pointer pr-2"
+                className="md:w-[12rem] flex items-center justify-between gap-8 cursor-pointer pr-2"
                 onClick={() => setShowModal(!showModal)}
               >
                 <div className="flex items-center justify-center gap-2">
@@ -69,7 +69,7 @@ const Header = ({ data }) => {
                 <FaChevronDown className=" font-normal text-sm md:block hidden" />
               </div>
               {showModal && (
-                <div className=" absolute px-2 mt-5 md:w-full md:right-24 right-3 w-[14rem] py-2 z-[9] rounded-b-lg bg-white shadow-xl border ">
+                <div className=" absolute px-2 mt-5 md:w-full md:right-20 right-3 w-[14rem] py-2 z-[9] rounded-b-lg bg-white shadow-xl border ">
                   <div className="w-full flex items-center gap-3 bg-gray-800 p-[0.5rem] text-white justify-start rounded">
                     <div className="bg-white text-gray-800 rounded">
                       <BsPerson className="text-2xl" />
