@@ -50,11 +50,11 @@ const Profile = ({ id }) => {
       let list = [];
       list.push(
         {
-          link: `mailto:${data.user.email}`,
+          link: `mailto:${data.user.email ?? ""}`,
           icon: "https://cdn4.iconfinder.com/data/icons/address-book-providers-in-colors/512/gmail-64.png",
         },
         {
-          link: `tel:${data.user.phoneNo}`,
+          link: `tel:${data.user.phoneNo ?? ""}`,
           icon: "https://cdn4.iconfinder.com/data/icons/social-media-2097/94/phone-512.png",
         }
       );
@@ -102,7 +102,7 @@ const Profile = ({ id }) => {
           <MdVerified className="text-green-400 text-[1.3rem]" />
         </h2>
         <h3 className="text-[0.68rem] font-xs font-normal text-center w-full  mt-1">
-          {userData?.designation} | {userData.company}
+          {userData?.designation ?? ''} | {userData.company ?? ''}
         </h3>
         <div className=" py-2 mt-1 ">
           <p className="text-[0.7rem] w-full text-center font-light">
