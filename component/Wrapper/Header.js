@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Router, useRouter } from "next/router";
-import { BsPerson } from "react-icons/bs";
+import { BsCart2, BsPerson } from "react-icons/bs";
 import { FaChevronDown } from "react-icons/fa";
 import {
   FiBookOpen,
@@ -12,6 +12,8 @@ import {
   FiShield,
 } from "react-icons/fi";
 import { toast } from "react-toastify";
+import { MdNotifications } from "react-icons/md";
+import { AiOutlineNotification } from "react-icons/ai";
 const CustomLink = ({ href, title, className = "" }) => {
   const router = useRouter();
   return (
@@ -51,29 +53,29 @@ const Header = ({ data }) => {
             <CustomLink href="/blog" title="Blog" />
           </nav>
         </div>
-        <div>
+        <div className="flex items-center gap-4">
           {data ? (
             <div className="relative md:w-[15rem] ">
               <div
-                className="w-full flex items-center justify-between gap-8 cursor-pointer pr-2"
+                className="md:w-[10rem] flex items-center justify-between gap-8 cursor-pointer pr-2"
                 onClick={() => setShowModal(!showModal)}
               >
                 <div className="flex items-center justify-center gap-2">
                   <BsPerson className="text-2xl" />
                   <h2 className="capitalize font-normal text-base md:block hidden">
-                    {data.firstName} {data.lastName}
+                    {data.firstName}
                   </h2>
                 </div>
-                <FaChevronDown className="font-normal text-sm md:block hidden" />
+                <FaChevronDown className=" font-normal text-sm md:block hidden" />
               </div>
               {showModal && (
-                <div className=" absolute px-2 mt-5 md:w-full right-5 w-[14rem] py-2 z-[9] rounded-b-lg bg-white shadow-xl border ">
+                <div className=" absolute px-2 mt-5 md:w-full md:right-24 right-3 w-[14rem] py-2 z-[9] rounded-b-lg bg-white shadow-xl border ">
                   <div className="w-full flex items-center gap-3 bg-gray-800 p-[0.5rem] text-white justify-start rounded">
                     <div className="bg-white text-gray-800 rounded">
                       <BsPerson className="text-2xl" />
                     </div>
                     <h2 className="capitalize font-normal text-sm">
-                      {data.firstName} {data.lastName}
+                      {data.firstName}
                     </h2>
                   </div>
                   <Link
@@ -82,7 +84,23 @@ const Header = ({ data }) => {
                     className="w-full flex items-center justify-start cursor-pointer gap-3 text-center font-normal text-sm py-2 border-y my-2"
                   >
                     <FiSettings className="text-lg font-normal text-gray-800" />
-                    <h3>Account Setting</h3>
+                    <h3>Profile</h3>
+                  </Link>
+                  <Link
+                    onClick={() => setShowModal(false)}
+                    href={`/cart`}
+                    className="w-full flex items-center justify-start cursor-pointer gap-3 text-center font-normal text-sm py-2 border-y my-2"
+                  >
+                    <BsCart2 className="text-lg font-normal text-gray-800" />
+                    <h3>Cart</h3>
+                  </Link>
+                  <Link
+                    onClick={() => setShowModal(false)}
+                    href={`/notifications`}
+                    className="w-full flex items-center justify-start cursor-pointer gap-3 text-center font-normal text-sm py-2 border-y my-2"
+                  >
+                    <AiOutlineNotification className="text-lg font-normal text-gray-800" />
+                    <h3>Notification</h3>
                   </Link>
                   <div className="w-full md:hidden block">
                     <Link
