@@ -7,7 +7,7 @@ import Loader from "../Helper/Loader";
 import { useRouter } from "next/navigation";
 
 const Profile = ({ id }) => {
-  const [data, setData] = useState([]);
+  const [stateData, setStateData] = useState([]);
   const [userData, setUserData] = useState([]);
   const [supportingData, setSupportingData] = useState([]);
   const [initial, setInitial] = useState(0);
@@ -30,7 +30,7 @@ const Profile = ({ id }) => {
 
   const pagination = () => {
     let end = max * (initial + 1);
-    setSupportingData(data?.slice(initial * max, end));
+    setSupportingData(stateData?.slice(initial * max, end));
   };
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const Profile = ({ id }) => {
         };
         list.push(obj);
       }
-      setData(list);
+      setStateData(list);
       setLoading(false);
       let end = max * (initial + 1);
       setSupportingData(list?.slice(initial * max, end));
@@ -137,8 +137,8 @@ const Profile = ({ id }) => {
         </div>
 
         <div className="flex items-center justify-center">
-          {data?.length > max &&
-            Array.from({ length: Math.ceil(data?.length / max) }, (v, i) => (
+          {stateData?.length > max &&
+            Array.from({ length: Math.ceil(stateData?.length / max) }, (v, i) => (
               <div
                 key={i}
                 className="m-0 flex items-center justify-center p-1 "
