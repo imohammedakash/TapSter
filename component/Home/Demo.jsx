@@ -29,7 +29,8 @@ const Demo = ({ userData }) => {
                 <img
                   draggable={false}
                   src={
-                    userData?.profilePic === ""
+                    userData?.profilePic === "" ||
+                    userData?.profilePic === undefined
                       ? "https://imgv3.fotor.com/images/gallery/3D-male-character-portrait-made-by-Fotor-AI-face-generator.jpg"
                       : userData?.profilePic
                   }
@@ -40,7 +41,7 @@ const Demo = ({ userData }) => {
                   <img
                     draggable={false}
                     src={
-                      userData?.coverPic === ""
+                      userData?.coverPic === "" || !userData
                         ? "https://t3.ftcdn.net/jpg/05/57/04/76/360_F_557047649_CbCAFT8NfXkHffKu3l8O5jgV1dUpmfKE.jpg"
                         : userData?.coverPic
                     }
@@ -51,19 +52,24 @@ const Demo = ({ userData }) => {
               </div>
               <div className="flex items-center justify-center w-full flex-col mt-12 pb-2 px-2">
                 <h2 className=" text-[1.1rem] mt-3 text-white flex items-center gap-1">
-                  {userData?.firstName + " " + userData?.lastName ?? "John Doe"}{" "}
+                  {userData
+                    ? userData?.firstName + " " + userData?.lastName
+                    : "John Doe"}
                   <MdVerified className="text-green-400" />
                 </h2>
                 <h3 className="text-[0.68rem] font-xs font-normal text-center text-white mt-1">
-                  {userData?.designation !== "" && userData?.company !== ""
+                  {userData ||
+                  (userData?.designation === "" && userData?.company === "")
                     ? userData?.designation + " | " + userData?.company
-                    : "Full Stack Developer | Designer"}
+                    : "System Engineer | Tapster"}
                 </h3>
                 <div className=" py-2 mt-1 ">
                   <p className="text-[0.59rem] w-full text-center font-light text-[#ffffff]">
-                    Hello, I am Akash a full stack developer and igner with 1.4
-                    years of experience in all aspects of full stack
-                    development, from creating stunning UI.
+                    {!userData || userData?.about === ""
+                      ? `  Hello, I am Akash a full stack developer and igner with 1.4
+                      years of experience in all aspects of full stack
+                      development, from creating stunning UI.`
+                      : userData?.about}
                   </p>
                 </div>
                 <div className="w-full flex items-center justify-center">

@@ -62,7 +62,6 @@ const UserProfile = () => {
   };
   const handleSubmit = (values) => {
     delete values?.email;
-    delete values?.about;
     values["phoneNo"] = values?.phoneNo.toString();
     dispatch(updateProfile(values)).then((res) => {
       if (res?.statusCode === 200) {
