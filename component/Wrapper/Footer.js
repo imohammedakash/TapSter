@@ -14,7 +14,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="w-full border-t">
+    <footer className="w-full border-t bg-[#111010] text-white">
       <div className=" flex flex-col items-center justify-center py-8 flex-wrap">
         <div className="w-full flex items-start md:justify-around justify-center flex-wrap gap-7">
           <div className="w-1/4 flex items-center justify-center">
@@ -55,7 +55,7 @@ const Footer = () => {
                   required
                   className="py-2 px-3 rounded-l-sm border-none outline-none text-gray-700 md:w-auto w-24 text-xs md:text-base"
                 />
-                <button className="py-2 md:px-6 px-3 md:text-base text-xs bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-indigo-200 via-slate-600 to-indigo-200 hover:to-slate-600 hover:from-indigo-200 rounded-r-sm border-black hover:bg-[#0f6636] hover:border-white transition-all text-white">
+                <button className="py-2 md:px-6 px-3 md:text-base text-xs bg-blue-600 rounded-r-sm border-black hover:bg-[#0f6636] hover:border-white transition-all text-white">
                   Send
                 </button>
               </div>
@@ -76,7 +76,7 @@ const Footer = () => {
               copyright © {new Date().getFullYear()} {" "} tapster.in
             </span>
           </div>
-          <ul className="flex items-center justify-center text-[#252323d0] gap-5 md:text-2xl text-lg md:mt-0 mt-4">
+          <ul className="flex items-center justify-center text-[#787878d0] gap-5 md:text-2xl text-lg md:mt-0 mt-4">
             <a href="https://linkedin.com/in/mohammedakash" target="blank">
               <AiFillLinkedin className="  hover:rotate-12 hover:scale-105 transition-all" />
             </a>

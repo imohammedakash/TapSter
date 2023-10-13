@@ -1,4 +1,4 @@
-import React, { useEffect,  useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiMail } from "react-icons/fi";
 import {
   AiOutlineEye,
@@ -80,7 +80,7 @@ const Register = () => {
                       toast.success(res?.message);
                       localStorage.setItem("AccessToken", res.data.token);
                       Router.push("/");
-                      return
+                      return;
                     }
                     toast.error(res?.message);
                   });
