@@ -55,7 +55,7 @@ const Demo = ({ userData }) => {
                   <MdVerified className="text-green-400" />
                 </h2>
                 <h3 className="text-[0.68rem] font-xs font-normal text-center text-white mt-1">
-                  {userData.designation !== "" && userData?.company !== ""
+                  {userData?.designation !== "" && userData?.company !== ""
                     ? userData?.designation + " | " + userData?.company
                     : "Full Stack Developer | Designer"}
                 </h3>
