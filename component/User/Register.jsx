@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiMail } from "react-icons/fi";
 import { BsPerson, BsPersonWorkspace } from "react-icons/bs";
-import { SiCodesignal } from "react-icons/si";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
@@ -92,7 +91,7 @@ const Register = () => {
                     if (res?.statusCode === 200) {
                       toast.success(res?.message);
                       localStorage.setItem("AccessToken", res.data.token);
-                      Router.push("/");
+                      return Router.push("/");
                     }
                     toast.error(res?.message);
                   });
