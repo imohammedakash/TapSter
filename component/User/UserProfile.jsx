@@ -222,6 +222,7 @@ const UserProfile = () => {
                   <Field
                     as="textarea"
                     name="about"
+                    maxlength={250}
                     placeholder="Please tell Something about you"
                     className="w-full outline-none border-none bg-transparent min-h-[5rem]"
                   />

@@ -66,9 +66,7 @@ const Demo = ({ userData }) => {
                 <div className=" py-2 mt-1 ">
                   <p className="text-[0.59rem] w-full text-center font-light text-[#ffffff]">
                     {!userData || userData?.about === ""
-                      ? `  Hello, I am Akash a full stack developer and igner with 1.4
-                      years of experience in all aspects of full stack
-                      development, from creating stunning UI.`
+                      ? `  Hello, I this is John Doe a System Engineer with 7 years of solid experience in developing robust application.`
                       : userData?.about}
                   </p>
                 </div>
@@ -94,7 +92,7 @@ const Demo = ({ userData }) => {
                     </div>
                     {data?.map((i) => (
                       <div className="flex items-center justify-center">
-                        <div className="h-12 w-12 flex items-center justify-center text-xl rounded-xl shadow-xl bg-white border p-1">
+                        <div className="h-12 w-12 flex items-center justify-center text-xl rounded-xl shadow-xl bg-white border p-[3px]">
                           <img
                             src={i?.image}
                             className="h-full w-full object-cover rounded-xl"
