@@ -35,7 +35,7 @@ const Footer = () => {
               <h2 className="font-semibold text-lg whitespace-nowrap">
                 Know Me
               </h2>
-              <ul className="flex flex-col gap-2 font-light">
+              <ul className="flex flex-col md:items-start md:justify-start items-center justify-center gap-2 font-light">
                 <Link href="/about">About</Link>
                 <Link href="/terms&conditions">Terms & Conditions</Link>
                 <Link href="/privacy&policy">Privacy Policy</Link>
