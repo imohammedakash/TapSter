@@ -29,9 +29,9 @@ const Demo = ({ userData }) => {
                 <img
                   draggable={false}
                   src={
-                    userData.profilePic === ""
+                    userData?.profilePic === ""
                       ? "https://imgv3.fotor.com/images/gallery/3D-male-character-portrait-made-by-Fotor-AI-face-generator.jpg"
-                      : userData.profilePic
+                      : userData?.profilePic
                   }
                   alt=""
                   className="rounded-full h-28 w-28 translate-y-12 bg-white"

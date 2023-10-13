@@ -91,7 +91,7 @@ const Profile = ({ id }) => {
         <div className="rounded-full h-40 w-40 absolute top-10 overflow-hidden">
           <img
             draggable={false}
-            src={userData.profilePic}
+            src={userData?.profilePic}
             alt=""
             className="h-full w-full object-cover"
           />
