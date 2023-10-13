@@ -40,9 +40,9 @@ const Demo = ({ userData }) => {
                   <img
                     draggable={false}
                     src={
-                      userData.coverPic === ""
+                      userData?.coverPic === ""
                         ? "https://t3.ftcdn.net/jpg/05/57/04/76/360_F_557047649_CbCAFT8NfXkHffKu3l8O5jgV1dUpmfKE.jpg"
-                        : userData.coverPic
+                        : userData?.coverPic
                     }
                     alt=""
                     className="h-full w-full object-cover"
@@ -51,12 +51,13 @@ const Demo = ({ userData }) => {
               </div>
               <div className="flex items-center justify-center w-full flex-col mt-12 pb-2 px-2">
                 <h2 className=" text-[1.1rem] mt-3 text-white flex items-center gap-1">
-                  {userData.firstName + " " + userData.lastName ?? "John Doe"}{" "}
+                  {userData?.firstName + " " + userData?.lastName ?? "John Doe"}{" "}
                   <MdVerified className="text-green-400" />
                 </h2>
                 <h3 className="text-[0.68rem] font-xs font-normal text-center text-white mt-1">
-                  {userData.designation + " | " + userData.company ??
-                    "Full Stack Developer | Designer"}
+                  {userData.designation !== "" && userData?.company !== ""
+                    ? userData?.designation + " | " + userData?.company
+                    : "Full Stack Developer | Designer"}
                 </h3>
                 <div className=" py-2 mt-1 ">
                   <p className="text-[0.59rem] w-full text-center font-light text-[#ffffff]">
@@ -85,13 +86,13 @@ const Demo = ({ userData }) => {
                         />
                       </div>
                     </div>
-                    {data.map((i) => (
+                    {data?.map((i) => (
                       <div className="flex items-center justify-center">
                         <div className="h-12 w-12 flex items-center justify-center text-xl rounded-xl shadow-xl bg-white border p-1">
                           <img
-                            src={i.image}
+                            src={i?.image}
                             className="h-full w-full object-cover rounded-xl"
-                            alt={i.image}
+                            alt={i?.image}
                           />
                         </div>
                       </div>

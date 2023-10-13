@@ -83,7 +83,7 @@ const Profile = ({ id }) => {
         <div className="w-full h-full relative">
           <img
             draggable={false}
-            src={userData.coverPic}
+            src={userData?.coverPic}
             alt=""
             className="h-full w-full object-cover"
           />
