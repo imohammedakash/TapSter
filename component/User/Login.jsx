@@ -82,7 +82,6 @@ const Register = () => {
                       Router.push("/");
                       return
                     }
-                    console.log(res.message);
                     toast.error(res?.message);
                   });
                 }}

@@ -27,7 +27,6 @@ const CustomLink = ({ href, title, className = "" }) => {
 };
 
 const Header = ({ data }) => {
-  console.log(data);
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const handleLogOut = () => {

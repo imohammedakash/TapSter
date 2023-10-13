@@ -12,7 +12,6 @@ const Wrapper = ({ children }) => {
     let userData = localStorage.getItem("userData");
     if (AccessToken && !userData) {
       dispatch(getProfile()).then((res) => {
-        console.log("res", res);
         if (res?.statusCode === 200) {
           setData(res.data);
         }

@@ -6,7 +6,7 @@ const PublicProfile = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  return <Profile id={id} />; 
+  return <Profile id={id} />;
 };
 
 export default PublicProfile;

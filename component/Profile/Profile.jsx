@@ -72,7 +72,6 @@ const Profile = ({ id }) => {
       let end = max * (initial + 1);
       setSupportingData(list?.slice(initial * max, end));
     } catch (error) {
-      console.log("Error", error.response.data);
       router.back();
     }
   };
@@ -138,19 +137,22 @@ const Profile = ({ id }) => {
 
         <div className="flex items-center justify-center">
           {stateData?.length > max &&
-            Array.from({ length: Math.ceil(stateData?.length / max) }, (v, i) => (
-              <div
-                key={i}
-                className="m-0 flex items-center justify-center p-1 "
-                id={`user-swipe-p-${i}`}
-                onClick={() => {
-                  setPrev(initial);
-                  setInitial(i);
-                }}
-              >
-                <BsDot className="text-xl" />
-              </div>
-            ))}
+            Array.from(
+              { length: Math.ceil(stateData?.length / max) },
+              (v, i) => (
+                <div
+                  key={i}
+                  className="m-0 flex items-center justify-center p-1 "
+                  id={`user-swipe-p-${i}`}
+                  onClick={() => {
+                    setPrev(initial);
+                    setInitial(i);
+                  }}
+                >
+                  <BsDot className="text-xl" />
+                </div>
+              )
+            )}
         </div>
         <div className="w-full mt-6 px-4">
           <h2 className="w-full text-center py-3 bg-blue-600 text-white rounded">
