@@ -28,6 +28,8 @@ const UserProfile = () => {
     if (window.innerWidth < 768) {
       setShowPreview(false);
     }
+    let route = window.location.search;
+    console.log("Route", route);
     let token = localStorage.getItem("AccessToken");
     if (!token) {
       return router.push("/login");
@@ -222,7 +224,7 @@ const UserProfile = () => {
                   <Field
                     as="textarea"
                     name="about"
-                    maxlength={250}
+                    maxLength="250"
                     placeholder="Please tell Something about you"
                     className="w-full outline-none border-none bg-transparent min-h-[5rem]"
                   />
@@ -234,7 +236,11 @@ const UserProfile = () => {
                   disabled={loading ? true : false}
                   className="bg-[#0f0e0e] px-7 py-3 w-full rounded-full text-white hover:scale-105 transition-all"
                 >
-                  {loading ? "Loading..." : "Save"}
+                  {loading ? (
+                    <div className="flex items-center justify-center relative after:absolute after:content-[''] after:border-2 after:h-6 after:w-6 after:rounded-full after:border-t-0 py-3 after:animate-spin"></div>
+                  ) : (
+                    "Save"
+                  )}
                 </button>
               </div>
             </Form>
@@ -271,7 +277,11 @@ const UserProfile = () => {
                   disabled={loading ? true : false}
                   className="bg-[#0f0e0e] px-7 py-3 w-full rounded-full text-white hover:scale-105 transition-all"
                 >
-                  {loading ? "Loading..." : "Save"}
+                  {loading ? (
+                    <div className="flex items-center justify-center relative after:absolute after:content-[''] after:border-2 after:h-6 after:w-6 after:rounded-full after:border-t-0 py-3 after:animate-spin"></div>
+                  ) : (
+                    "Save"
+                  )}
                 </button>
               </div>
             ) : (

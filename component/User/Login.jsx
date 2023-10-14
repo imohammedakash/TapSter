@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FiMail } from "react-icons/fi";
+import loginImage from "../../public/6310507.jpg";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
@@ -14,6 +15,7 @@ import Router from "next/router";
 import { toast } from "react-toastify";
 import AuthInput from "../Helper/AuthInput";
 import { LoginUser } from "@/Redux/Actions/user";
+import Image from "next/image";
 const Register = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
@@ -28,12 +30,18 @@ const Register = () => {
   }
   return (
     <>
-      <main className=" w-full min-h-[90vh] flex items-center justify-center px-4 bg-[#fff]">
-        <div className="flex items-center justify-center w-full ">
-          <div className="flex md:w-[60%] w-full items-center justify-center mb-8 bg-white ">
+      <div className="py-2 px-5">
+        <Link className=" flex items-end" href="/">
+          <h1 className="text-4xl font-normal translate-x-1">T</h1>
+          <h1 className=" text-2xl">apster.</h1>
+        </Link>
+      </div>
+      <main className=" w-full flex items-center justify-center px-4 bg-[#fff]">
+        <div className=" flex items-center justify-center w-full ">
+          <div className="flex md:w-1/2 w-full items-center justify-center mb-8 bg-white ">
             <div className=" lg:w-[80%] w-full flex items-center justify-center flex-col py-10 md:px-8 px-4 ">
-              <h1 className="md:text-4xl text-3xl text-center w-full whitespace-nowrap font-medium md:first-letter:text-5xl ">
-                Welcome Back
+              <h1 className="md:text-4xl text-3xl flex items-end justify-center text-center w-full whitespace-nowrap font-medium md:first-letter:text-7xl ">
+                Welcome Back Tapster
               </h1>
               <h2 className="text-base mt-2 ">
                 Enter Your Login Details below
@@ -135,13 +143,18 @@ const Register = () => {
                       />
                     </div>
                   </div>
+                  <div className="w-full text-end">forget Password?</div>
                   <div className="w-full flex items-center justify-start mt-2">
                     <button
                       type="submit"
                       disabled={loading ? true : false}
                       className="bg-[#0f0e0e] px-7 py-3 w-full rounded-full text-white hover:scale-105 transition-all"
                     >
-                      {loading ? "Loading..." : "Login"}
+                      {loading ? (
+                        <div className="flex items-center justify-center relative after:absolute after:content-[''] after:border-2 after:h-6 after:w-6 after:rounded-full after:border-t-0 py-3 after:animate-spin"></div>
+                      ) : (
+                        "Login"
+                      )}
                     </button>
                   </div>
                   <div className="w-full text-black flex items-center justify-center gap-2">
@@ -153,6 +166,14 @@ const Register = () => {
                 </Form>
               </Formik>
             </div>
+          </div>
+          <div className="md:w-1/2 md:flex hidden h-full  items-center justify-center ">
+            <Image
+              draggable={false}
+              src={loginImage}
+              className="h-full w-full object-contain"
+              alt="home-page-women"
+            />
           </div>
         </div>
       </main>

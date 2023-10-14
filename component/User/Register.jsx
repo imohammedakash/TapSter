@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FiMail } from "react-icons/fi";
 import { BsPerson, BsPersonWorkspace } from "react-icons/bs";
+import signupImage from "../../public/signup.png";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
@@ -16,6 +17,7 @@ import { toast } from "react-toastify";
 import AuthInput from "../Helper/AuthInput";
 import { MdOutlineMapsHomeWork } from "react-icons/md";
 import { register } from "@/Redux/Actions/user";
+import Image from "next/image";
 const Register = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
@@ -30,9 +32,15 @@ const Register = () => {
   }
   return (
     <>
+      <div className="py-2 px-5">
+        <Link className=" flex items-end" href="/">
+          <h1 className="text-4xl font-normal translate-x-1">T</h1>
+          <h1 className=" text-2xl">apster.</h1>
+        </Link>
+      </div>
       <main className=" w-full min-h-[90vh] flex items-center justify-center px-4 bg-[#fff]">
         <div className="flex items-center justify-center w-full ">
-          <div className="flex md:w-[60%] w-full items-center justify-center mb-8 bg-white ">
+          <div className="flex  md:w-1/2 w-full items-center justify-center mb-8 bg-white ">
             <div className=" lg:w-[80%] w-full flex items-center justify-center flex-col py-10 md:px-8 px-4 ">
               <h1 className="md:text-4xl text-3xl text-center w-full whitespace-nowrap font-medium md:first-letter:text-5xl ">
                 Create Your Account
@@ -61,8 +69,6 @@ const Register = () => {
                   lastName: "",
                   email: "",
                   password: "",
-                  company: "",
-                  designation: "",
                 }}
                 validate={(values) => {
                   const errors = {};
@@ -179,23 +185,6 @@ const Register = () => {
                       />
                     </div>
                   </div>
-
-                  <div className="w-full flex items-start justify-start gap-3 mt-2">
-                    <AuthInput
-                      label="Company"
-                      Icon={MdOutlineMapsHomeWork}
-                      type="text"
-                      name="company"
-                      placeholder="Enter your Company"
-                    />
-                    <AuthInput
-                      label="Designation"
-                      Icon={BsPersonWorkspace}
-                      type="text"
-                      name="designation"
-                      placeholder="Enter your designation"
-                    />
-                  </div>
                   <div className="w-full text-black flex items-center text-xs justify-start gap-2 pl-2">
                     <input type="checkbox" />
                     <span>I agree to all Terms, Privacy and Fees</span>
@@ -206,7 +195,11 @@ const Register = () => {
                       disabled={loading ? true : false}
                       className="bg-[#0f0e0e] px-7 py-3 w-full rounded-full text-white hover:scale-105 transition-all"
                     >
-                      {loading ? "Loading..." : "Register"}
+                      {loading ? (
+                        <div className="flex items-center justify-center relative after:absolute after:content-[''] after:border-2 after:h-6 after:w-6 after:rounded-full after:border-t-0 py-3 after:animate-spin"></div>
+                      ) : (
+                        "Register"
+                      )}
                     </button>
                   </div>
                   <div className="w-full text-black flex items-center justify-center gap-2">
@@ -218,6 +211,14 @@ const Register = () => {
                 </Form>
               </Formik>
             </div>
+          </div>
+          <div className="md:w-1/2 md:flex hidden h-full  items-center justify-center ">
+            <Image
+              draggable={false}
+              src={signupImage}
+              className="h-full w-full object-contain"
+              alt="home-page-women"
+            />
           </div>
         </div>
       </main>

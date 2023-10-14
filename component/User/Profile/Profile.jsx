@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { MdVerified } from "react-icons/md";
-import Icons from "../Helper/Icons";
+import Icons from "../../Helper/Icons";
 import { BsDot } from "react-icons/bs";
 import axios from "axios";
-import Loader from "../Helper/Loader";
+import Loader from "../../Helper/Loader";
 import { useRouter } from "next/navigation";
 
 const Profile = ({ id }) => {

@@ -91,7 +91,7 @@ const Demo = ({ userData }) => {
                       </div>
                     </div>
                     {data?.map((i) => (
-                      <div className="flex items-center justify-center">
+                      <div key={i.id} className="flex items-center justify-center">
                         <div className="h-12 w-12 flex items-center justify-center text-xl rounded-xl shadow-xl bg-white border p-[3px]">
                           <img
                             src={i?.image}
