@@ -38,7 +38,7 @@ const Register = () => {
       </div>
       <main className=" w-full flex items-center justify-center px-4 bg-[#fff]">
         <div className=" flex items-center justify-center w-full ">
-          <div className="flex md:w-1/2 w-full items-center justify-center mb-8 bg-white ">
+          <div className="flex md:w-1/2 w-full items-center justify-center bg-white ">
             <div className=" lg:w-[80%] w-full flex items-center justify-center flex-col py-10 md:px-8 px-4 ">
               <h1 className="md:text-4xl text-3xl flex items-end justify-center text-center w-full whitespace-nowrap font-medium md:first-letter:text-7xl ">
                 Welcome Back Tapster

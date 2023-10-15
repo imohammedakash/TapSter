@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Router, useRouter } from "next/router";
 import { BsCart2, BsPerson } from "react-icons/bs";
-import { FaChevronDown } from "react-icons/fa";
+import { IoNotificationsOutline } from "react-icons/io5";
 import {
   FiBookOpen,
   FiGitPullRequest,
@@ -12,7 +12,7 @@ import {
   FiShield,
 } from "react-icons/fi";
 import { toast } from "react-toastify";
-import { MdNotifications } from "react-icons/md";
+import { MdNotifications, MdOutlineNotifications } from "react-icons/md";
 import { AiOutlineNotification } from "react-icons/ai";
 const CustomLink = ({ href, title, className = "" }) => {
   const router = useRouter();
@@ -53,52 +53,37 @@ const Header = ({ data }) => {
           </nav>
         </div>
         <div className="flex items-center gap-4">
+          <Link href="/cart">
+            <BsCart2 className="text-2xl text-gray-800" />
+          </Link>
           {data ? (
-            <div className="relative md:w-[15rem] ">
-              <div
-                className="md:w-[12rem] flex items-center justify-between gap-8 cursor-pointer pr-2"
-                onClick={() => setShowModal(!showModal)}
-              >
-                <div className="flex items-center justify-center gap-2">
-                  <BsPerson className="text-2xl" />
-                  <h2 className="capitalize font-normal text-base md:block hidden">
-                    {data.firstName}
-                  </h2>
+            <div className="relative ">
+              <div className=" flex items-center justify-between cursor-pointer gap-4">
+                <div
+                  className="flex items-center justify-center gap-2"
+                  onClick={() => setShowModal(!showModal)}
+                >
+                  <BsPerson className="text-2xl text-gray-800 font-normal" />
                 </div>
-                <FaChevronDown className=" font-normal text-sm md:block hidden" />
               </div>
               {showModal && (
-                <div className=" absolute px-2 mt-5 md:w-full md:right-20 right-3 w-[14rem] py-2 z-[9] rounded-b-lg bg-white shadow-xl border ">
-                  <div className="w-full flex items-center gap-3 bg-gray-800 p-[0.5rem] text-white justify-start rounded">
+                <div className=" absolute px-2 mt-5 right-3 w-[14rem] py-2 z-[9] rounded-b-lg bg-white shadow-xl border ">
+                  <Link
+                    onClick={() => setShowModal(false)}
+                    href={`/profile`}
+                    className="w-full flex items-center gap-3 bg-gray-800 p-[0.5rem] text-white justify-start rounded"
+                  >
                     <div className="bg-white text-gray-800 rounded">
                       <BsPerson className="text-2xl" />
                     </div>
-                    <h2 className="capitalize font-normal text-sm">
-                      {data.firstName}
-                    </h2>
-                  </div>
-                  <Link
-                    onClick={() => setShowModal(false)}
-                    href={`/profile/${data.firstName.toLowerCase()}-${data.lastName.toLowerCase()}`}
-                    className="w-full flex items-center justify-start cursor-pointer gap-3 text-center font-normal text-sm py-2 border-y my-2"
-                  >
-                    <FiSettings className="text-lg font-normal text-gray-800" />
-                    <h3>Profile</h3>
+                    <h2 className="capitalize font-normal text-sm">Profile</h2>
                   </Link>
                   <Link
                     onClick={() => setShowModal(false)}
-                    href={`/cart`}
+                    href={`/notification`}
                     className="w-full flex items-center justify-start cursor-pointer gap-3 text-center font-normal text-sm py-2 border-y my-2"
                   >
-                    <BsCart2 className="text-lg font-normal text-gray-800" />
-                    <h3>Cart</h3>
-                  </Link>
-                  <Link
-                    onClick={() => setShowModal(false)}
-                    href={`/notifications`}
-                    className="w-full flex items-center justify-start cursor-pointer gap-3 text-center font-normal text-sm py-2 border-y my-2"
-                  >
-                    <AiOutlineNotification className="text-lg font-normal text-gray-800" />
+                    <IoNotificationsOutline className="text-xl text-gray-800" />
                     <h3>Notification</h3>
                   </Link>
                   <div className="w-full md:hidden block">
@@ -144,11 +129,6 @@ const Header = ({ data }) => {
             </div>
           ) : (
             <div className="flex items-center gap-5">
-              <Link
-                href="/cart"
-              >
-                <BsCart2 className="text-2xl text-[#191919]" />
-              </Link>
               <Link
                 href="/login"
                 className={` px-4 rounded py-[0.4rem] font-normal  border transition-all `}
