@@ -18,9 +18,6 @@ const ProductArea = () => {
     let alterCart = (data) => {
         dispatch(handleCart(JSON.stringify(data))).then(res => {
             setUserCart(data)
-            if (res) {
-                toast.success("Added to cart successfully")
-            }
         }).catch(err => {
             toast.error("Something Went Wrong")
         })
@@ -49,7 +46,7 @@ const ProductArea = () => {
     else
         return (
             <div className='h-[90vh] bg-slate-100 w-full flex items-start justify-start gap-2 p-2' >
-                <div className="w-[73%]">
+                <div className="md:w-[73%] w-full">
                     {
                         userCart.map((item) => (
                             <div className='w-full bg-white border-b flex items-center justify-center'>
@@ -58,32 +55,32 @@ const ProductArea = () => {
                                         <img className='h-full w-full object-contain' src={item.thumbnail} alt="" />
                                     </div>
                                     <div className=" w-full flex flex-col">
-                                        <h1 className="text-xl font-medium mt-1">{item?.title}</h1>
-                                        <h1 className=" w-full text-normal font-light mt-1">{item?.description?.slice(0, 50)}...</h1>
+                                        <h1 className="sm:text-xl text-sm font-medium mt-1 whitespace-nowrap">{item?.title}</h1>
+                                        <h1 className=" w-full md:block hidden overflow-ellipsis text-normal font-light mt-1">{item?.description?.slice(0, 50)}...</h1>
                                         <div className="flex items-center justify-start mt-1 gap-3">
-                                            <h2 className="font-medium text-xl">₹ {item.price - (parseInt(item.price) * (item.discountPercentage / 100)).toFixed(2)}</h2>
-                                            <h4 className="text-sm flex items-center justify-center relative after:absolute after:content-[''] after:w-full after:h-[1px] after:bg-black ">₹{item.price}</h4>
-                                            <ReactStars edit={false} color={"grey"} value={item.rating} activeColor={'tomato'} classNames='text-2' />
+                                            <h2 className="font-medium sm:text-xl text-sm whitespace-nowrap">₹ {item.price - (parseInt(item.price) * (item.discountPercentage / 100)).toFixed(2)}</h2>
+                                            <h4 className="text-sm flex items-center justify-center relative after:absolute after:content-['']  after:w-full after:h-[1px] after:bg-black whitespace-nowrap ">₹{item.price}</h4>
                                         </div>
+                                        <ReactStars edit={false} color={"grey"} value={item.rating} activeColor={'tomato'} classNames='text-2' />
                                     </div>
                                 </div>
-                                <div className='w-[35%] h-full relative flex items-center justify-center'>
+                                <div className='w-[35%] h-full relative flex items-center justify-end pr-3'>
                                     <div className="absolute translate-y-[-3.4rem] right-2 cursor-pointer" onClick={() => handleRemove(item.id)}>
                                         <RxCross2 className='text-xl' />
                                     </div>
-                                    <div className="flex items-center justify-center gap-4 translate-x-[100%]">
-                                        <AiOutlineMinus className='text-xl cursor-pointer' onClick={() => handleQty('d', item)} />
+                                    <div className="flex items-center justify-center gap-4">
+                                        <AiOutlineMinus className='md:text-xl cursor-pointer' onClick={() => handleQty('d', item)} />
                                         {
                                             item.qty ?? 1
                                         }
-                                        <AiOutlinePlus className='text-xl cursor-pointer' onClick={() => handleQty('i', item)} />
+                                        <AiOutlinePlus className='md:text-xl cursor-pointer' onClick={() => handleQty('i', item)} />
                                     </div>
                                 </div>
                             </div>
                         ))
                     }
                 </div>
-                <div className="w-[27%] bg-white px-2 py-4">
+                <div className="w-[27%] md:block hidden bg-white px-2 py-4">
                     <div className="">
                         <h1 className='border-b py-2'>Product Details</h1>
                     </div>
@@ -106,8 +103,8 @@ const ProductArea = () => {
                         <h4 className="flex items-center justify-center font-light relative after:absolute after:content-[''] after:w-full after:h-[0.8px] after:bg-[#3c3c3c95]">
                             {
                                 userCart.reduce((accumulator, currentObject) => {
-                                    return parseInt(accumulator) + (parseInt(currentObject.price) * (currentObject.discountPercentage / 100)).toFixed(2) * (currentObject.qty ?? 1);
-                                }, 0)
+                                    return parseInt(accumulator) + (parseInt(currentObject.price) * (currentObject.discountPercentage / 100)) * (currentObject.qty ?? 1);
+                                }, 0).toFixed(2)
                             }
                         </h4>
                     </div>
