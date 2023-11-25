@@ -45,13 +45,13 @@ const ProductArea = () => {
         )
     else
         return (
-            <div className='h-[90vh] bg-slate-100 w-full flex items-start justify-start gap-2 p-2' >
+            <div className='h-[90vh] bg-slate-100 w-full flex items-start justify-start sm:flex-row flex-col gap-2 p-2' >
                 <div className="md:w-[73%] w-full">
                     {
                         userCart.map((item) => (
                             <div className='w-full bg-white border-b flex items-center justify-center'>
                                 <div className='p-2 w-[65%] flex items-start justify-start gap-4  '>
-                                    <div className="h-32 w-32">
+                                    <div className="md:h-32 md:w-32 h-16 w-16">
                                         <img className='h-full w-full object-contain' src={item.thumbnail} alt="" />
                                     </div>
                                     <div className=" w-full flex flex-col">
@@ -65,7 +65,7 @@ const ProductArea = () => {
                                     </div>
                                 </div>
                                 <div className='w-[35%] h-full relative flex items-center justify-end pr-3'>
-                                    <div className="absolute translate-y-[-3.4rem] right-2 cursor-pointer" onClick={() => handleRemove(item.id)}>
+                                    <div className="absolute md:translate-y-[-3.4rem] -translate-y-[130%] right-2 cursor-pointer" onClick={() => handleRemove(item.id)}>
                                         <RxCross2 className='text-xl' />
                                     </div>
                                     <div className="flex items-center justify-center gap-4">
@@ -80,7 +80,7 @@ const ProductArea = () => {
                         ))
                     }
                 </div>
-                <div className="w-[27%] md:block hidden bg-white px-2 py-4">
+                <div className="sm:w-[27%] w-full md:block sm:hidden block bg-white px-2 py-4">
                     <div className="">
                         <h1 className='border-b py-2'>Product Details</h1>
                     </div>
