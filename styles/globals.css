@@ -4,21 +4,27 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
 }
-body{
+
+body {
   background-color: white;
 }
+
 ::-webkit-scrollbar {
-  width: 6px; /* Set the width of the scrollbar */
+  width: 6px;
+  /* Set the width of the scrollbar */
 }
+
 .demo::-webkit-scrollbar {
-  width: 0px; /* Set the width of the scrollbar */
+  width: 0px;
+  /* Set the width of the scrollbar */
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -52,13 +58,19 @@ input[type=number] {
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
 }
+
 .card-phone {
   box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
-::selection{
+
+::selection {
   background: #ffffff00;
 }
 
+
+.text-2 {
+  font-size: 2rem;
+}

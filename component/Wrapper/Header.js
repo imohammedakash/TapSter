@@ -8,12 +8,11 @@ import {
   FiGitPullRequest,
   FiGlobe,
   FiLogOut,
-  FiSettings,
   FiShield,
 } from "react-icons/fi";
 import { toast } from "react-toastify";
-import { MdNotifications, MdOutlineNotifications } from "react-icons/md";
-import { AiOutlineNotification } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "@/Redux/Actions/user";
 const CustomLink = ({ href, title, className = "" }) => {
   const router = useRouter();
   return (
@@ -26,14 +25,16 @@ const CustomLink = ({ href, title, className = "" }) => {
   );
 };
 
-const Header = ({ data }) => {
+const Header = () => {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
+  const user = useSelector((state) => state?.user?.user)
+  let dispatch = useDispatch()
   const handleLogOut = () => {
     setShowModal(false);
-    localStorage.clear();
-    router.push("/login");
+    dispatch(logout())
     toast.success("Log out Successfully");
+    router.push("/login");
   };
   return (
     <header className="w-full flex items-center justify-center">
@@ -56,7 +57,7 @@ const Header = ({ data }) => {
           <Link href="/cart">
             <BsCart2 className="text-2xl text-gray-800" />
           </Link>
-          {data ? (
+          {user?.token ? (
             <div className="relative ">
               <div className=" flex items-center justify-between cursor-pointer gap-4">
                 <div

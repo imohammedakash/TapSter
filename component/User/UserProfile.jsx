@@ -24,15 +24,13 @@ const UserProfile = () => {
   const [socialProfiles, setSocialProfiles] = useState([]);
   const router = useRouter();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state?.user?.user);
+  if (!user?.token) {
+    router.push("/");
+  }
   useEffect(() => {
     if (window.innerWidth < 768) {
       setShowPreview(false);
-    }
-    let route = window.location.search;
-    console.log("Route", route);
-    let token = localStorage.getItem("AccessToken");
-    if (!token) {
-      return router.push("/login");
     }
     if (activeProfile === "social") {
       getSocialProfileData();
@@ -41,14 +39,14 @@ const UserProfile = () => {
     }
   }, [activeProfile]);
   const getSocialProfileData = () => {
-    dispatch(getSocialProfile()).then((res) => {
-      const { data } = res;
+    dispatch(getSocialProfile(user.token)).then((res) => {
+      const data = res?.data;
       setSocialProfiles(data.socialProfiles);
     });
   };
   const getProfileData = () => {
-    dispatch(getProfile()).then((res) => {
-      const { data } = res;
+    dispatch(getProfile(user.token)).then((res) => {
+      const data = res?.data;
       setUserData({
         firstName: data?.firstName,
         lastName: data?.lastName,
@@ -65,7 +63,7 @@ const UserProfile = () => {
   const handleSubmit = (values) => {
     delete values?.email;
     values["phoneNo"] = values?.phoneNo.toString();
-    dispatch(updateProfile(values)).then((res) => {
+    dispatch(updateProfile(user.token, values)).then((res) => {
       if (res?.statusCode === 200) {
         toast.success(res?.message);
         getProfileData();
@@ -92,7 +90,7 @@ const UserProfile = () => {
       isPublic: p.isPublic,
     }));
 
-    dispatch(updateSocialProfile(payloadData))
+    dispatch(updateSocialProfile(user.token, payloadData))
       .then((res) => {
         if (res.statusCode == 200) {
           toast.success("Social profile updated successfully");
@@ -298,17 +296,15 @@ const UserProfile = () => {
           <div className="flex items-center justify-center md:w-[40%] w-full md:my-3 my-5 border rounded p-[0.1rem]">
             <div
               onClick={() => setActiveProfile("general")}
-              className={`w-1/2 flex cursor-pointer items-center transition-all justify-center text-sm py-[0.48rem] ${
-                activeProfile === "general" ? "shadow bg-[#c4c4c459]" : ""
-              }`}
+              className={`w-1/2 flex cursor-pointer items-center transition-all justify-center text-sm py-[0.48rem] ${activeProfile === "general" ? "shadow bg-[#c4c4c459]" : ""
+                }`}
             >
               General
             </div>
             <div
               onClick={() => setActiveProfile("social")}
-              className={`w-1/2 flex cursor-pointer transition-all items-center justify-center text-sm py-[0.48rem] ${
-                activeProfile === "social" ? "shadow bg-[#c4c4c459]" : ""
-              }`}
+              className={`w-1/2 flex cursor-pointer transition-all items-center justify-center text-sm py-[0.48rem] ${activeProfile === "social" ? "shadow bg-[#c4c4c459]" : ""
+                }`}
             >
               Social
             </div>

@@ -7,6 +7,7 @@ export const userReducer = createReducer(initialState, {
   LOGIN_SUCCESS: (state, action) => {
     state.loading = false;
     state.user = action.payload;
+    state.error = ''
   },
   LOGIN_FAILURE: (state, action) => {
     state.loading = false;
@@ -19,6 +20,7 @@ export const userReducer = createReducer(initialState, {
   REGISTER_SUCCESS: (state, action) => {
     state.loading = false;
     state.user = action.payload;
+    state.error = ''
   },
   REGISTER_FAILURE: (state, action) => {
     state.loading = false;
@@ -29,7 +31,8 @@ export const userReducer = createReducer(initialState, {
   },
   LOADUSER_SUCCESS: (state, action) => {
     state.loading = false;
-    state.user = action.payload;
+    state.user.data = action.payload;
+    state.error = ''
   },
   LOADUSER_FAILURE: (state, action) => {
     state.loading = false;
@@ -41,8 +44,22 @@ export const userReducer = createReducer(initialState, {
   UPDATEUSER_SUCCESS: (state, action) => {
     state.loading = false;
     state.user = action.payload;
+    state.error = ''
   },
   UPDATEUSER_FAILURE: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+
+  },
+  LOGOUTUSER_REQUEST: (state) => {
+    state.loading = true;
+  },
+  LOGOUTUSER_SUCCESS: (state, action) => {
+    state.loading = false;
+    state.user = {};
+    state.error = ''
+  },
+  LOGOUTUSER_FAILURE: (state, action) => {
     state.loading = false;
     state.error = action.payload;
   },

@@ -16,16 +16,12 @@ import { toast } from "react-toastify";
 import AuthInput from "../Helper/AuthInput";
 import { LoginUser } from "@/Redux/Actions/user";
 import Image from "next/image";
-const Register = () => {
+const Login = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const [data, setData] = useState();
   const loading = useSelector((state) => state.user.loading);
-  useEffect(() => {
-    let token = localStorage.getItem("AccessToken");
-    setData(token);
-  }, []);
-  if (data) {
+  const user = useSelector((state) => state?.user?.user);
+  if (user?.token) {
     Router.push("/");
   }
   return (
@@ -86,7 +82,6 @@ const Register = () => {
                   dispatch(LoginUser(values)).then((res) => {
                     if (res?.statusCode === 200) {
                       toast.success(res?.message);
-                      localStorage.setItem("AccessToken", res.data.token);
                       Router.push("/");
                       return;
                     }
@@ -181,4 +176,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

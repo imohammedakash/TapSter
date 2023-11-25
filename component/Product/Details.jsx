@@ -9,27 +9,45 @@ import {
   MdWaterfallChart,
 } from "react-icons/md";
 import { BsCart } from "react-icons/bs";
+import { getProductDetails } from "@/Redux/Actions/product";
+import ReactStars from "react-rating-stars-component"
+import { useDispatch, useSelector } from "react-redux";
+import { handleCart } from "@/Redux/Actions/cart";
+import { toast } from "react-toastify";
 const Details = ({ id }) => {
+  const [productData, setProductData] = useState({});
   const [activeImage, setActiveImage] = useState("");
-  const [qty, setQty] = useState(1);
-  const [productData, setProductData] = useState();
-  let obj = {
-    name: "Black Matte PVC | Silver Print | NFC Business Card",
-    price: 2000,
-    imageList: [
-      "https://tapitag.co/cdn/shop/products/A_360x.jpg?v=1667848709",
-      "https://tapitag.co/cdn/shop/files/Deloittecard_360x.png?v=1685609669",
-      "https://tapitag.co/cdn/shop/products/MicrosoftTeams-image_60_360x.png?v=1678274202",
-      "https://tapitag.co/cdn/shop/products/instagramcard_360x.jpg?v=1680120786",
-    ],
-  };
+  const dispatch = useDispatch();
+  let cartData = useSelector(state => state.cart.cart);
   useEffect(() => {
     getProductData();
   }, [id]);
   const getProductData = () => {
-    setProductData(obj);
-    setActiveImage(obj.imageList[0]);
+    getProductDetails(id).then(res => {
+      setProductData(res);
+      setActiveImage(res.images[0]);
+    })
+
   };
+
+  const handlehandleCart = () => {
+    let existingCartData = typeof cartData === 'string' ? JSON.parse(cartData) : [];
+    let cart = [...existingCartData];
+    const existingProductIndex = cart.findIndex((product) => product.id === productData.id);
+    if (existingProductIndex !== -1) {
+      cart[existingProductIndex] = { ...cart[existingProductIndex], qty: (cart[existingProductIndex].qty || 1) + 1 }
+    } else {
+      cart = [...existingCartData, productData]
+    }
+    cart = JSON.stringify(cart);
+    dispatch(handleCart(cart)).then(res => {
+      if (res) {
+        toast.success("Added to cart successfully")
+      }
+    }).catch(err => {
+      toast.error("Something Went Wrong")
+    })
+  }
   return (
     <Wrapper>
       <div className="mt-10 mb-32 flex justify-center md:flex-row flex-col md:gap-3  px-2">
@@ -42,12 +60,11 @@ const Details = ({ id }) => {
             />
           </div>
           <div className="flex items-center justify-start md:mt-5 mt-2 gap-4">
-            {productData?.imageList?.map((image) => (
+            {productData?.images?.map((image) => (
               <img
                 onClick={() => setActiveImage(image)}
-                className={`h-[3.5rem] w-[3.5rem] object-cover border cursor-pointer rounded transition-all ${
-                  image === activeImage ? "border-[3px] border-[#3cd9de]" : ""
-                }`}
+                className={`h-[3.5rem] w-[3.5rem] object-cover border cursor-pointer rounded transition-all ${image === activeImage ? "border-[3px] border-[#3cd9de]" : ""
+                  }`}
                 src={image}
                 alt="product image"
               />
@@ -55,24 +72,21 @@ const Details = ({ id }) => {
           </div>
         </div>
         <div className="md:w-1/2 w-full md:mt-0 mt-6">
-          <h1 className="text-3xl font-medium">{productData?.name}</h1>
-          <h2 className="mt-4 text-2xl">Rs. {productData?.price}</h2>
-          <div className="flex items-start flex-col gap-2 mt-4">
-            <h2>Quantity</h2>
-            <div className="flex items-center gap-7 py-2 shadow-xl rounded border px-2">
-              <span
-                className="text-xl cursor-pointer
-              "
-              >
-                <AiOutlineMinus />
-              </span>{" "}
-              {qty}{" "}
-              <span className="text-xl cursor-pointer">
-                <AiOutlinePlus />
-              </span>
-            </div>
+          <div className="w-full flex items-center justify-start">
+            <h5 className=" p-[2px] px-[1.5rem] rounded bg-black text-white">{productData?.brand}</h5>
           </div>
+          <h1 className="text-3xl font-medium mt-3">{productData?.title}</h1>
+          <h1 className="text-normal mt-2">{productData?.description}</h1>
+          <div className="flex items-center justify-start mt-3 gap-3">
+            <h2 className="font-medium text-3xl">₹ {productData.price - (parseInt(productData.price) * (productData.discountPercentage / 100)).toFixed(2)}</h2>
+            <h4 className="text-sm flex items-center justify-center relative after:absolute after:content-[''] after:w-[3rem] after:h-[1px] after:bg-black ">₹{productData.price}</h4>
+          </div>
+          <ReactStars edit={false} color={"grey"} value={productData.rating} activeColor={'tomato'} classNames='text-2' />
+
           <div className="mt-6">
+            <div className="mb-3 text-xl font-medium">
+              Our Offers
+            </div>
             <div className="flex items-center gap-3">
               <MdOutlineLocalShipping className="text-2xl" />
               <h2>Deliverable all over the world</h2>
@@ -95,7 +109,7 @@ const Details = ({ id }) => {
             </div>
           </div>
           <div className="flex flex-col mt-8 gap-4">
-            <button
+            <button onClick={handlehandleCart}
               className={`w-full text-center p-[0.6rem] transition-all rounded border shadow flex items-center justify-center gap-2`}
             >
               <BsCart /> Add to Cart

@@ -23,11 +23,8 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [data, setData] = useState();
   const loading = useSelector((state) => state.user.loading);
-  useEffect(() => {
-    let token = localStorage.getItem("AccessToken");
-    setData(token);
-  }, []);
-  if (data) {
+  const user = useSelector((state) => state?.user?.user);
+  if (user?.token) {
     Router.push("/");
   }
   return (
@@ -96,7 +93,6 @@ const Register = () => {
                   dispatch(register(values)).then((res) => {
                     if (res?.statusCode === 200) {
                       toast.success(res?.message);
-                      localStorage.setItem("AccessToken", res.data.token);
                       return Router.push("/");
                     }
                     toast.error(res?.message);
