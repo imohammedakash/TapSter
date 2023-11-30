@@ -91,7 +91,6 @@ const ProductArea = () => {
                         <h4 className='mt-3'>
                             ₹ {userCart.reduce((accumulator, currentObject) => {
                                 return accumulator + currentObject.price * (currentObject.qty ?? 1)
-
                             }, 0)
                             }
                         </h4>
