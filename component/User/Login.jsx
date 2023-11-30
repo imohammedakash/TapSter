@@ -44,10 +44,16 @@ const Login = () => {
               </h2>
               <div className="w-full flex items-center justify-start mt-6 gap-5">
                 <div className="bg-[#0f0e0e00] border cursor-pointer text-lg flex items-center justify-center gap-2 shadow px-7 py-2 w-full rounded-full text-black hover:scale-105 transition-all">
-                  <FcGoogle className="text-2xl" /> Google
+                  <FcGoogle className="text-2xl" />
+                  <h3 className="md:block hidden">
+                    Google
+                  </h3>
                 </div>
                 <div className="bg-[#0f0e0e00] border cursor-pointer text-lg flex items-center justify-center gap-2 shadow px-7 py-2 w-full rounded-full text-black hover:scale-105 transition-all">
-                  <FaFacebook className="text-2xl text-[#3B5998]" /> Facebook
+                  <FaFacebook className="text-2xl text-[#3B5998]" />
+                  <h3 className="md:block hidden">
+                    Facebook
+                  </h3>
                 </div>
               </div>
               <div
