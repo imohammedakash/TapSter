@@ -29,6 +29,7 @@ const Header = () => {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const user = useSelector((state) => state?.user?.user)
+  const cart = useSelector((state) => state?.cart?.cart);
   let dispatch = useDispatch()
   const handleLogOut = () => {
     setShowModal(false);
@@ -54,7 +55,10 @@ const Header = () => {
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/cart">
+          <Link className="relative" href="/cart">
+            <span className="absolute -top-1 text-xs bg-gray-800 text-white rounded-full h-4 p-[0.3px] text-center w-4 -right-1 ">
+              {cart.length > 0 ? JSON.parse(cart).length : 0}
+            </span>
             <BsCart2 className="text-2xl text-gray-800" />
           </Link>
           {user?.token ? (
