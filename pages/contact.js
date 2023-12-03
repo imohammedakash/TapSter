@@ -1,5 +1,6 @@
-import Contact from '@/component/Contact'
+import dynamic from 'next/dynamic'
 import React from 'react'
+const Contact = dynamic(() => import('@/component/Contact'))
 
 const index = () => {
     return (

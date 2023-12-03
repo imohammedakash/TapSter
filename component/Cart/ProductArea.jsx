@@ -10,17 +10,13 @@ import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai"
 const ProductArea = () => {
     const dispatch = useDispatch();
     let cart = useSelector(state => state.cart.cart);
-    let [userCart, setUserCart] = useState(cart && typeof cart === 'string' ? JSON.parse(cart) : [])
+    let userCart = cart && typeof cart === 'string' ? JSON.parse(cart) : []
     const handleRemove = (id) => {
         let newCartData = userCart.filter(i => i.id !== id)
         alterCart(newCartData)
     }
     let alterCart = (data) => {
-        dispatch(handleCart(JSON.stringify(data))).then(res => {
-            setUserCart(data)
-        }).catch(err => {
-            toast.error("Something Went Wrong")
-        })
+        dispatch(handleCart(JSON.stringify(data)))
     }
     const handleQty = (param, item) => {
         let manupulationData = [...userCart]
@@ -33,11 +29,10 @@ const ProductArea = () => {
             }
             manupulationData[index] = { ...manupulationData[index], qty: (manupulationData[index].qty || 2) - 1 }
         }
-        setUserCart(manupulationData)
         alterCart(manupulationData)
 
     }
-    if (!userCart.length)
+    if (!userCart?.length)
         return (
             <div className='h-[90vh] bg-slate-100 w-full flex items-center justify-center flex-col'>
                 <h5>Your Cart is Empty</h5>
@@ -48,7 +43,7 @@ const ProductArea = () => {
             <div className='h-[90vh] bg-slate-100 w-full flex items-start justify-start sm:flex-row flex-col gap-2 p-2' >
                 <div className="md:w-[73%] w-full">
                     {
-                        userCart.map((item) => (
+                        userCart?.map((item) => (
                             <div className='w-full bg-white border-b flex items-center justify-center'>
                                 <div className='p-2 w-[65%] flex items-start justify-start gap-4  '>
                                     <div className="md:h-32 md:w-32 h-16 w-16">
@@ -86,7 +81,7 @@ const ProductArea = () => {
                     </div>
                     <div className="mt-1 flex items-center justify-between">
                         <h4 className="mt-3">
-                            Product({userCart.length})
+                            Product({userCart?.length})
                         </h4>
                         <h4 className='mt-3'>
                             ₹ {userCart.reduce((accumulator, currentObject) => {

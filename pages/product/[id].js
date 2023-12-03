@@ -1,6 +1,7 @@
-import Details from "@/component/Product/Details";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import React from "react";
+const Details = dynamic(() => import("@/component/Product/Details"));
 
 const Product = () => {
   const router = useRouter();

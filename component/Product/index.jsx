@@ -11,6 +11,7 @@ const Index = () => {
       setProductList(res.products)
     })
   }, [])
+  console.log(productList)
   return (
     <Wrapper>
       <div className=" mt-10">
@@ -21,10 +22,10 @@ const Index = () => {
         </div>
         {
 
-          productList.length ? <div className="my-10 flex items-center justify-center gap-4 flex-wrap">
+          productList?.length ? <div className="my-10 flex items-center justify-center gap-4 flex-wrap">
             {
               productList.map(item => (
-                <Card
+                <Card key={item.image}
                   data={item}
                 />
               ))

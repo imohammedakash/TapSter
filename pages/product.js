@@ -1,5 +1,6 @@
+import dynamic from "next/dynamic";
 import React from "react";
-import Index from "@/component/Product";
+const Index = dynamic(() => import("@/component/Product"));
 const product = () => {
   return <Index />;
 };

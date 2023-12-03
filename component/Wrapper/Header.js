@@ -57,7 +57,7 @@ const Header = () => {
         <div className="flex items-center gap-4">
           <Link className="relative" href="/cart">
             <span className="absolute -top-1 text-xs bg-gray-800 text-white rounded-full h-4 p-[0.3px] text-center w-4 -right-1 ">
-              {cart.length > 0 ? JSON.parse(cart).length : 0}
+              {cart?.length > 0 ? JSON.parse(cart)?.length : 0}
             </span>
             <BsCart2 className="text-2xl text-gray-800" />
           </Link>

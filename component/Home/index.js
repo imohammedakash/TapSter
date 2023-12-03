@@ -1,10 +1,11 @@
 import React from "react";
-import Wrapper from "../Wrapper/Wrapper";
-import Landing from "./Landing";
-import Demo from "./Demo";
-import Map from "./Map";
-import DisplayProduct from "./DisplayProduct";
-import Customers from "./Customers";
+import dynamic from "next/dynamic";
+const Wrapper = dynamic(() => import("../Wrapper/Wrapper"));
+const Landing = dynamic(() => import("./Landing"));
+const Demo = dynamic(() => import("./Demo"));
+const Map = dynamic(() => import("./Map"));
+const DisplayProduct = dynamic(() => import("./DisplayProduct"));
+const Customers = dynamic(() => import("./Customers"));
 
 const Home = () => {
   return (
