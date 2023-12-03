@@ -1,6 +1,6 @@
-import Home from "@/component/Home";
+import dynamic from "next/dynamic";
 import React from "react";
-import { useSelector } from "react-redux";
+const Home = dynamic(() => import("@/component/Home"));
 
 const index = () => {
   return (

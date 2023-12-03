@@ -12,8 +12,10 @@ export default function App({ Component, pageProps }) {
     <React.StrictMode>
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <ToastContainer />
-          <Component {...pageProps} />
+          <React.Suspense fallback={<div>Loading</div>}>
+            <ToastContainer />
+            <Component {...pageProps} />
+          </React.Suspense>
         </PersistGate>
       </Provider>
     </React.StrictMode>

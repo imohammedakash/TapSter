@@ -268,7 +268,7 @@ const UserProfile = () => {
                 </div>
               ))}
             </div>
-            {socialProfiles.length ? (
+            {socialProfiles?.length ? (
               <div className=" w-[30%] flex items-center justify-start mt-2">
                 <button
                   type="submit"

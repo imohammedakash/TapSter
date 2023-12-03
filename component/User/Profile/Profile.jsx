@@ -59,7 +59,7 @@ const Profile = ({ id }) => {
           icon: "https://cdn4.iconfinder.com/data/icons/social-media-2097/94/phone-512.png",
         }
       );
-      for (let i = 0; i < data.socialProfiles.length; i++) {
+      for (let i = 0; i < data.socialProfiles?.length; i++) {
         let item = data.socialProfiles[i];
         let obj = {
           link: item.url,
@@ -127,7 +127,7 @@ const Profile = ({ id }) => {
               <Icons bg={i.icon} link={i.link} />
             </div>
           ))}
-          {Array.from({ length: max - supportingData.length }, (v, i) => (
+          {Array.from({ length: max - supportingData?.length }, (v, i) => (
             <div
               key={i}
               className="h-16 w-16 flex items-center justify-center text-xl rounded-xl mt-5 shadow-xl bg-white border p-1"
