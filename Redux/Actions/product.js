@@ -2,7 +2,7 @@ import axios from "axios";
 export const getProductList = async () => {
     try {
         const { data } = await axios.get(
-            'https://dummyjson.com/products'
+            'https://tapster-dev.onrender.com/api/users/product?page=1&pageSize=10'
         );
         return data;
     } catch (err) {
@@ -12,7 +12,7 @@ export const getProductList = async () => {
 export const getProductDetails = async (id) => {
     try {
         const { data } = await axios.get(
-            `https://dummyjson.com/products/${id}`
+            `https://tapster-dev.onrender.com/api/users/product-detail?productId=${id}`
         );
         return data;
     } catch (err) {

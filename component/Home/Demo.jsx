@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { BsBatteryFull, BsWifi } from "react-icons/bs";
 import { FaSignal } from "react-icons/fa";
@@ -5,20 +6,24 @@ import { MdVerified } from "react-icons/md";
 import { motion } from "framer-motion";
 import { data } from "@/data";
 const Demo = ({ userData }) => {
+  console.log(window.location.pathname)
   return (
     <div className="w-full flex md:items-start items-center md:flex-row flex-col relative justify-evenly gap-5 mt-12">
-      <div className="md:w-2/3 ">
-        <h1 className="w-full text-center text-5xl font-medium">How will it look?</h1>
-        <p className="text-lg font-light w-full mt-6 md:text-start text-center">
-          Welcome to Tapster, where your card is the key to an unparalleled digital experience! Upon receiving your uniquely coded Tapster card, the journey begins. With a simple tap on the back of any NFC-enabled smartphone, a seamless connection is established between your physical card and your personalized profile on our website. This innovative technology ensures a secure and efficient link, allowing you to effortlessly bridge the physical and digital realms.
-        </p>
-        <p className="text-lg font-light w-full md:text-start text-center mt-8 ">
-          Witness the transformation as your smartphone takes you directly to your personalized profile page. Here, a world of exclusive benefits awaits—crafted just for you. From special offers to personalized recommendations, each tap unlocks a realm of tailored content and services. Your Tapster card isn't just a card; it's a conduit to a personalized digital space that evolves with your preferences.
-        </p>
-        <p className="text-lg font-light w-full md:text-start text-center mt-8">
-          Take charge of your experience by managing your profile, updating preferences, and customizing your journey at any time. Tapster isn't just about convenience; it's about delivering an exceptional and exclusive digital encounter with every tap. Embrace the future of personalized connectivity and discover the extraordinary possibilities that your Tapster card unlocks in the palm of your hand!
-        </p>
-      </div>
+      {
+        window.location.pathname === '/' ? <div className="md:w-2/3 ">
+          <h1 className="w-full text-center text-5xl font-medium">How will it look?</h1>
+          <p className="text-lg font-light w-full mt-6 md:text-start text-center">
+            Welcome to Tapster, where your card is the key to an unparalleled digital experience! Upon receiving your uniquely coded Tapster card, the journey begins. With a simple tap on the back of any NFC-enabled smartphone, a seamless connection is established between your physical card and your personalized profile on our website.
+          </p>
+          <p className="text-lg font-light w-full md:text-start text-center mt-8 ">
+            Witness the transformation as your smartphone takes you directly to your personalized profile page. Here, a world of exclusive benefits awaits—crafted just for you. From special offers to personalized recommendations, each tap unlocks a realm of tailored content and services. Your Tapster card isn't just a card; it's a conduit to a personalized digital space that evolves with your preferences.
+          </p>
+          <p className="text-lg font-light w-full md:text-start text-center mt-8">
+            Take charge of your experience by managing your profile, updating preferences, and customizing your journey at any time. Tapster isn't just about convenience; it's about delivering an exceptional and exclusive digital encounter with every tap. Embrace the future of personalized connectivity and discover the extraordinary possibilities that your Tapster card unlocks in the palm of your hand!
+          </p>
+        </div> : ''
+      }
+
       <div className="">
         <div className="w-[20rem] relative h-[37rem] outline-2 outline-black rounded-[2rem] shadow-xl border p-1 bg-slate-300 overflow-hidden">
           <div className="h-full w-full rounded-[inherit] border-[0.4rem] border-black bg-[#141313f1]">

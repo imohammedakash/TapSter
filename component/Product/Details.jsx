@@ -24,30 +24,41 @@ const Details = ({ id }) => {
   }, [id]);
   const getProductData = () => {
     getProductDetails(id).then(res => {
-      setProductData(res);
-      setActiveImage(res.images[0]);
+
+      if (res.statusCode == 200) {
+        console.log(res);
+        setProductData(res.data);
+        setActiveImage(res?.data?.media[0]);
+      }
+
     })
 
   };
 
-  const handlehandleCart = () => {
-    let existingCartData = typeof cartData === 'string' ? JSON.parse(cartData) : [];
-    let cart = [...existingCartData];
-    const existingProductIndex = cart.findIndex((product) => product.id === productData.id);
-    if (existingProductIndex !== -1) {
-      cart[existingProductIndex] = { ...cart[existingProductIndex], qty: (cart[existingProductIndex].qty || 1) + 1 }
-    } else {
-      cart = [...existingCartData, productData]
-    }
-    cart = JSON.stringify(cart);
-    dispatch(handleCart(cart)).then(res => {
-      if (res) {
-        toast.success("Added to cart successfully")
+  const handleUserCart = () => {
+    try {
+      const existingCartData = typeof cartData === 'string' ? JSON.parse(cartData) : [];
+      const existingProductIndex = existingCartData.findIndex((product) => product._id === productData._id);
+      if (existingProductIndex >= 0) {
+        existingCartData[existingProductIndex] = {
+          ...existingCartData[existingProductIndex],
+          qty: (existingCartData[existingProductIndex]?.qty || 1) + 1,
+        };
+      } else {
+        existingCartData.push(productData);
       }
-    }).catch(err => {
-      toast.error("Something Went Wrong")
-    })
-  }
+      const updatedCartData = JSON.stringify(existingCartData);
+      dispatch(handleCart(updatedCartData)).then((res) => {
+        if (res) {
+          toast.success('Added to cart successfully');
+        }
+      }).catch((err) => {
+        toast.error('Something went wrong');
+      });
+    } catch (error) {
+      toast.error('Something went wrong');
+    }
+  };
   return (
     <Wrapper>
       <div className="mt-10 mb-32 flex justify-center md:flex-row flex-col md:gap-3  px-2">
@@ -55,7 +66,7 @@ const Details = ({ id }) => {
           <div className="flex items-center h-[27rem] w-full justify-start ">
             <img
               className=" h-full w-full object-contain transition-all rounded"
-              src={activeImage}
+              src={activeImage.imageUrl}
               alt=""
             />
           </div>
@@ -63,9 +74,9 @@ const Details = ({ id }) => {
             {productData?.images?.map((image) => (
               <img
                 onClick={() => setActiveImage(image)}
-                className={`h-[3.5rem] w-[3.5rem] object-cover border cursor-pointer rounded transition-all ${image === activeImage ? "border-[3px] border-[#3cd9de]" : ""
+                className={`h-[3.5rem] w-[3.5rem] object-cover border cursor-pointer rounded transition-all ${image.imageUrl === activeImage.imageUrl ? "border-[3px] border-[#3cd9de]" : ""
                   }`}
-                src={image}
+                src={image.imageUrl}
                 alt="product image"
               />
             ))}
@@ -73,12 +84,12 @@ const Details = ({ id }) => {
         </div>
         <div className="md:w-1/2 w-full md:mt-0 mt-6">
           <div className="w-full flex items-center justify-start">
-            <h5 className=" p-[2px] px-[1.5rem] rounded bg-black text-white">{productData?.brand}</h5>
+            <h5 className=" p-[2px] px-[1.5rem] rounded bg-black text-white">{productData?.productType}</h5>
           </div>
-          <h1 className="text-3xl font-medium mt-3">{productData?.title}</h1>
+          <h1 className="text-3xl font-medium mt-3">{productData?.productName}</h1>
           <h1 className="text-normal mt-2">{productData?.description}</h1>
           <div className="flex items-center justify-start mt-3 gap-3">
-            <h2 className="font-medium text-3xl">₹ {productData.price - (parseInt(productData.price) * (productData.discountPercentage / 100)).toFixed(2)}</h2>
+            <h2 className="font-medium text-3xl">₹ {productData.sellingPrice}</h2>
             <h4 className="text-sm flex items-center justify-center relative after:absolute after:content-[''] after:w-[3rem] after:h-[1px] after:bg-black ">₹{productData.price}</h4>
           </div>
           <ReactStars edit={false} color={"grey"} value={productData.rating} activeColor={'tomato'} classNames='text-2' />
@@ -109,7 +120,7 @@ const Details = ({ id }) => {
             </div>
           </div>
           <div className="flex flex-col mt-8 gap-4">
-            <button onClick={handlehandleCart}
+            <button onClick={handleUserCart}
               className={`w-full text-center p-[0.6rem] transition-all rounded border shadow flex items-center justify-center gap-2`}
             >
               <BsCart /> Add to Cart

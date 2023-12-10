@@ -11,18 +11,20 @@ import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import AuthInput from "../Helper/AuthInput";
 import { LoginUser } from "@/Redux/Actions/user";
 import Image from "next/image";
 const Login = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const { next } = router.query
   const [showPassword, setShowPassword] = useState(false);
   const loading = useSelector((state) => state.user.loading);
   const user = useSelector((state) => state?.user?.user);
   if (user?.token) {
-    Router.push("/");
+    router.push("/");
   }
   return (
     <>
@@ -88,10 +90,10 @@ const Login = () => {
                   dispatch(LoginUser(values)).then((res) => {
                     if (res?.statusCode === 200) {
                       toast.success(res?.message);
-                      Router.push("/");
-                      return;
+                      router.push(next ? atob(next) : '/');
+                    } else {
+                      toast.error(res?.message);
                     }
-                    toast.error(res?.message);
                   });
                 }}
               >

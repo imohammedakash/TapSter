@@ -13,6 +13,8 @@ const AuthInput = ({ label = "label", Icon, required = false, ...rest }) => {
           {...rest}
           className="w-full outline-none border-none bg-transparent"
         />
+        
+        
       </div>
     </div>
   );

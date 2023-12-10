@@ -5,13 +5,13 @@ import { getProductList } from "@/Redux/Actions/product";
 import Seemer from "../Helper/Seemer";
 
 const Index = () => {
-  const [productList, setProductList] = useState([])
+  const [product, setProduct] = useState({})
   useEffect(() => {
     getProductList().then(res => {
-      setProductList(res.products)
+      setProduct(res.data)
     })
   }, [])
-  console.log(productList)
+  console.log(product)
   return (
     <Wrapper>
       <div className=" mt-10">
@@ -22,10 +22,10 @@ const Index = () => {
         </div>
         {
 
-          productList?.length ? <div className="my-10 flex items-center justify-center gap-4 flex-wrap">
+          product?.products?.length ? <div className={`my-10 flex items-center ${product?.products?.length % 2 === 0 ? 'justify-center' : 'justify-start'} gap-4 flex-wrap`}>
             {
-              productList.map(item => (
-                <Card key={item.image}
+              product?.products.map(item => (
+                <Card
                   data={item}
                 />
               ))

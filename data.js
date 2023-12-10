@@ -134,3 +134,39 @@ export const Customers = [
   },
 
 ]
+
+
+
+export const fakeAddresses = [
+  {
+    _id: '86eb6d89-134c-4c09-968f-573de8d22408',
+    name: 'MD AKash',
+    type: 'Home',
+    street: '123 Main Street',
+    city: 'Mumbai',
+    state: 'Maharashtra',
+    postalCode: '400001',
+    country: 'India',
+  },
+  {
+    _id: 'd9a91301-c1a9-447e-9761-30ed7a136a0e',
+    name: 'MD Akash',
+    type: 'Work',
+    street: '456 Oak Avenue',
+    city: 'Delhi',
+    state: 'Delhi',
+    postalCode: '110001',
+    country: 'India',
+  },
+  {
+    _id: 'df636022-068f-41a8-854f-6a073f3840eb',
+    name: 'MD Akash',
+    type: 'office',
+    street: '789 Pine Road',
+    city: 'Bangalore',
+    state: 'Karnataka',
+    postalCode: '560001',
+    country: 'India',
+  },
+];
+
