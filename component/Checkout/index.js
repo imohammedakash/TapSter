@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Wrapper from '../Wrapper/Wrapper'
 import Address from '../Helper/Address'
 import OrderReview from '../Helper/OrderReview'
@@ -26,6 +26,21 @@ const Checkout = () => {
     if (!userCart.length) {
         router.push("/cart");
     }
+
+    useEffect(() => {
+        const handleBeforeUnload = (event) => {
+            const message = 'Are you sure you want to leave? Your changes may not be saved.';
+            event.returnValue = message; // Standard for most browsers
+            return message; // For some older browsers
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, []);
+
     const handleNavigate = (key) => {
         console.log(key)
         console.log(obj[key])
@@ -42,6 +57,12 @@ const Checkout = () => {
                 toast.info('Please Select Shipping Address')
             }
 
+        }
+        if (active === 'review') {
+            if (payload.address !== null) {
+                setObj(state => ({ ...state, billing: true }));
+                setActive('billing');
+            }
         }
     }
     const ComponentSwitcher = () => {
