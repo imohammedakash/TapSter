@@ -155,6 +155,10 @@ export const logout = () => async (dispatch) => {
       type: "LOGOUTUSER_REQUEST",
     });
     dispatch({
+      type: "handleCart_SUCCESS",
+      payload: {},
+    });
+    dispatch({
       type: "LOGOUTUSER_SUCCESS"
     });
     await persistor.purge();
