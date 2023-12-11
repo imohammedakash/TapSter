@@ -4,12 +4,6 @@ import { fakeAddresses } from '@/data';
 import { BsTrash } from "react-icons/bs";
 import { BsPencilSquare } from "react-icons/bs";
 import { FaCheck } from "react-icons/fa6";
-// const ExistingAddress = ({ address }) => {
-//     return (
-
-//     )
-// }
-
 const Address = ({ payload, setPayload }) => {
     console.log(payload)
     const [isNew, setIsNew] = useState(false);

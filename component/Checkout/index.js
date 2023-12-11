@@ -21,7 +21,7 @@ const Checkout = () => {
     let user = useSelector(state => state?.user?.user);
     let userCart = cart && typeof cart === 'string' ? JSON.parse(cart) : []
     if (!user) {
-        router.push("/login");
+        router.push(`/login?next=${btoa('/checkout')}`);
     }
     if (!userCart.length) {
         router.push("/cart");
@@ -58,8 +58,8 @@ const Checkout = () => {
     };
     return (
         <Wrapper>
-            <div className={` w-full min-h-screen flex items-start`}>
-                <div className='w-[70%] flex flex-col items-center justify-center mt-3'>
+            <div className={` w-full min-h-screen flex sm:flex-row flex-col items-start`}>
+                <div className='sm:w-[70%] w-full flex flex-col items-center justify-center mt-3'>
                     <div className='w-full flex items-center justify-center'>
                         {
                             Object.keys(obj).map((key, index) => (
@@ -77,7 +77,7 @@ const Checkout = () => {
                         }
                     </div>
                 </div>
-                <div className='w-[30%] ml-6'>
+                <div className='sm:w-[30%] w-full sm:ml-6 p-2'>
                     <CartSummary userCart={userCart} handlePlaceOrder={handlePlaceOrder} />
                 </div>
             </div>

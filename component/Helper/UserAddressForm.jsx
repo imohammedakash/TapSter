@@ -22,7 +22,7 @@ const UserAddressForm = ({ onSubmit, handleClose }) => {
     };
 
     return (
-        <div className='inset-0 -translate-y-16 p-2 absolute z-[100] flex items-center justify-center bg-[#0000006e]'>
+        <div className='inset-0 p-2 fixed z-[100] flex items-center justify-center bg-[#0000006e]'>
 
             <Formik
                 initialValues={initialValues}
@@ -30,12 +30,13 @@ const UserAddressForm = ({ onSubmit, handleClose }) => {
                 onSubmit={onSubmit}
 
             >
-                <Form className='sm:w-[55%] w-full bg-white p-2 shadow border rounded'>
+                <Form className='sm:w-[45%] md:w-[35%] w-full bg-white p-2 shadow border rounded'>
                     <div className="w-full flex items-center justify-end" >
                         <RxCross2 className='text-xl cursor-pointer' onClick={() => handleClose(false)} />
                     </div>
+                    <h1 className='w-full text-center text-2xl font-light text-[#393939] mb-3'>Add New Address</h1>
                     <div>
-                        <AuthInput type="text" id="street" label='Street Address' name="street" />
+                        <AuthInput type="text" id="street" label='Street Address' name="street" placeholder="Please Provide Street address" />
                         <ErrorMessage name="street" component="h2" className="text-red-600 text-xs" />
                     </div>
                     <div>
@@ -58,7 +59,7 @@ const UserAddressForm = ({ onSubmit, handleClose }) => {
                         <ErrorMessage name="country" component="div" className="error" />
                     </div>
 
-                    <button className="px-16 mt-5 p-2 bg-[#000000db] text-white rounded hover:shadow-xl transition-all">
+                    <button className=" w-full mt-5 mb-3 p-2 bg-[#000000db] text-white rounded hover:shadow-xl transition-all">
                         Confirm
                     </button>
                 </Form>
