@@ -50,7 +50,7 @@ export const register = (credentials) => async (dispatch) => {
     return err?.response?.data ? err?.response?.data : err.message;
   }
 };
-export const getProfile = () => async (dispatch) => {
+export const  getProfile = (token) => async (dispatch) => {
   try {
     dispatch({
       type: "LOADUSER_REQUEST",
@@ -98,27 +98,19 @@ export const getSocialProfile = (token) => async (dispatch) => {
 
 export const updateProfile = (token, credentials) => async (dispatch) => {
   try {
-    dispatch({
-      type: "UPDATEUSER_REQUEST",
-    });
     const { data } = await axios.put(
       API_URL + "/api/users/profile",
       credentials,
       {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type":  "application/json",
           Authorization: `Bearer ${token}`,
         },
         withCredentials: true,
       }
     );
-    dispatch({
-      type: "UPDATEUSER_SUCCESS",
-      payload: data?.data,
-    });
     return data;
   } catch (err) {
-    dispatch({ type: "UPDATEUSER_FAILURE" });
     return err?.response?.data ? err?.response?.data : err.message;
   }
 };

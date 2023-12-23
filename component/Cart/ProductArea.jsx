@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { useRouter } from "next/navigation";
 import CartSummary from '../Helper/CartSummary';
 import CartProduct from '../Helper/CartProduct';
-
 const ProductArea = () => {
-   
     const router = useRouter()
     let cart = useSelector(state => state?.cart?.cart);
     let user = useSelector(state => state?.user?.user);
-    let userCart = cart && typeof cart === 'string' ? JSON.parse(cart) : []
+    let userCart = cart && typeof cart === 'string' ? JSON.parse(cart) : [];
     const handlePlaceOrder = () => {
         router.push(user.token ? '/checkout' : `/login?next=${btoa('/checkout')}`)
     }
@@ -26,7 +24,7 @@ const ProductArea = () => {
         return (
             <div className='h-[90vh] bg-slate-100 w-full flex items-start justify-start sm:flex-row flex-col gap-2 p-2' >
                 <div className="md:w-[73%] w-full">
-                    <CartProduct userCart={userCart} han />
+                    <CartProduct userCart={userCart} />
                 </div>
                 <div className="sm:w-[27%] w-full md:block sm:hidden block bg-white px-2 py-4">
                     <CartSummary userCart={userCart} handlePlaceOrder={handlePlaceOrder} />

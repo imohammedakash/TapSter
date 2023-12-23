@@ -2,13 +2,13 @@ import { Customers as CustomerData } from '@/data'
 import React from 'react'
 
 
-const Wrapper = ({ data }) => {
+const Wrapper = React.memo(({ data }) => {
     return (
         <div className=' w-[14rem] flex items-center justify-center bg-white hover:scale-105 transition-all'>
             <img className="" src={data.image} alt="" />
         </div>
     )
-}
+})
 
 const Customers = () => {
     return (

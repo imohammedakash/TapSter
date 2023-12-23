@@ -2,7 +2,6 @@ import Link from "next/link";
 import React from "react";
 import ReactStars from "react-rating-stars-component"
 const Card = ({ data }) => {
-  console.log(data)
   return (
     <Link
     key={data._id}

@@ -1,28 +1,29 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ReactStars from "react-rating-stars-component"
 import { RxCross2 } from "react-icons/rx";
 import { handleCart } from '@/Redux/Actions/cart';
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai"
 const CartProduct = ({ userCart }) => {
     const dispatch = useDispatch();
+    const user = useSelector((state) => state?.user?.user)
     const handleRemove = (id) => {
         let newCartData = userCart.filter(i => i._id !== id)
         alterCart(newCartData)
     }
     let alterCart = (data) => {
-        dispatch(handleCart(JSON.stringify(data)))
+        dispatch(handleCart(data, user?.token))
     }
     const handleQty = (param, item) => {
         let manupulationData = [...userCart];
         let index = manupulationData?.findIndex(i => i._id === item._id);
         if (param === 'i') {
-            manupulationData[index] = { ...manupulationData[index], qty: (manupulationData[index].qty || 1) + 1 }
+            manupulationData[index] = { ...manupulationData[index], quantity: (manupulationData[index].quantity || 1) + 1 }
         } else {
-            if (!manupulationData[index]?.qty || manupulationData[index]?.qty === 1) {
+            if (!manupulationData[index]?.quantity || manupulationData[index]?.quantity === 1) {
                 return
             }
-            manupulationData[index] = { ...manupulationData[index], qty: (manupulationData[index]?.qty || 2) - 1 }
+            manupulationData[index] = { ...manupulationData[index], quantity: (manupulationData[index]?.quantity || 2) - 1 }
         }
         alterCart(manupulationData)
 
@@ -54,7 +55,7 @@ const CartProduct = ({ userCart }) => {
                     <div className="flex items-center justify-center gap-4">
                         <AiOutlineMinus className='md:text-xl cursor-pointer' onClick={() => handleQty('d', item)} />
                         {
-                            item.qty ?? 1
+                            item.quantity ?? 1
                         }
                         <AiOutlinePlus className='md:text-xl cursor-pointer' onClick={() => handleQty('i', item)} />
                     </div>

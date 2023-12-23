@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Wrapper from '../Wrapper/Wrapper'
 import Address from '../Helper/Address'
 import OrderReview from '../Helper/OrderReview'
@@ -42,8 +42,6 @@ const Checkout = () => {
     }, []);
 
     const handleNavigate = (key) => {
-        console.log(key)
-        console.log(obj[key])
         if (obj[key]) {
             setActive(key)
         }

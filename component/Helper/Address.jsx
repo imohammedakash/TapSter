@@ -5,7 +5,6 @@ import { BsTrash } from "react-icons/bs";
 import { BsPencilSquare } from "react-icons/bs";
 import { FaCheck } from "react-icons/fa6";
 const Address = ({ payload, setPayload }) => {
-    console.log(payload)
     const [isNew, setIsNew] = useState(false);
     const handleIsNew = (param) => {
         setIsNew(param);

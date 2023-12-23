@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { getCartProduct } from "@/Redux/Actions/cart";
 
 const Wrapper = ({ children }) => {
+  let user = useSelector(state => state?.user?.user);
+  let dispatch = useDispatch()
+    useEffect(() => {
+        if (user?.token) {
+            dispatch(getCartProduct(user.token))
+        }
+    }, [])
   return (
     <div>
       <Header />

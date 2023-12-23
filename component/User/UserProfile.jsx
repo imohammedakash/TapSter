@@ -10,9 +10,7 @@ import Wrapper from "../Wrapper/Wrapper";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getProfile,
-  getSocialProfile,
   updateProfile,
-  updateSocialProfile,
 } from "@/Redux/Actions/user";
 import Demo from "../Home/Demo";
 
@@ -21,7 +19,6 @@ const UserProfile = () => {
   const loading = useSelector((state) => state.user.loading);
   const [activeProfile, setActiveProfile] = useState("general");
   const [showPreview, setShowPreview] = useState(true);
-  const [socialProfiles, setSocialProfiles] = useState([]);
   const router = useRouter();
   const dispatch = useDispatch();
   const user = useSelector((state) => state?.user?.user);
@@ -32,18 +29,8 @@ const UserProfile = () => {
     if (window.innerWidth < 768) {
       setShowPreview(false);
     }
-    if (activeProfile === "social") {
-      getSocialProfileData();
-    } else {
-      getProfileData();
-    }
-  }, [activeProfile]);
-  const getSocialProfileData = () => {
-    dispatch(getSocialProfile(user.token)).then((res) => {
-      const data = res?.data;
-      setSocialProfiles(data.socialProfiles);
-    });
-  };
+    getProfileData();
+  }, []);
   const getProfileData = () => {
     dispatch(getProfile(user.token)).then((res) => {
       const data = res?.data;
@@ -57,13 +44,14 @@ const UserProfile = () => {
         email: data?.email,
         about: data?.about || "",
         phoneNo: data?.phoneNo || "",
+        socialProfile: data?.socialProfile || [],
       });
     });
   };
   const handleSubmit = (values) => {
-    delete values?.email;
-    values["phoneNo"] = values?.phoneNo.toString();
-    dispatch(updateProfile(user.token, values)).then((res) => {
+    let { socialProfile, email, ...rest } = values
+    rest["phoneNo"] = rest?.phoneNo.toString();
+    dispatch(updateProfile(user.token, rest)).then((res) => {
       if (res?.statusCode === 200) {
         toast.success(res?.message);
         getProfileData();
@@ -72,32 +60,7 @@ const UserProfile = () => {
       toast.error(res?.message);
     });
   };
-  const handleSocialChange = (e, index) => {
-    setSocialProfiles((prevProfiles) => {
-      return prevProfiles.map((profile, i) => {
-        if (i === index) {
-          return { ...profile, url: e.target.value };
-        }
-        return profile;
-      });
-    });
-  };
-  const handleSocialSubmit = (e) => {
-    e.preventDefault();
-    let payloadData = socialProfiles.map((p) => ({
-      template: p["template"]["_id"],
-      url: p["url"],
-      isPublic: p.isPublic,
-    }));
 
-    dispatch(updateSocialProfile(user.token, payloadData))
-      .then((res) => {
-        if (res.statusCode == 200) {
-          toast.success("Social profile updated successfully");
-        }
-      })
-      .catch((err) => console.error(err));
-  };
   const getComponent = () => {
     switch (activeProfile) {
       case "general":
@@ -247,11 +210,11 @@ const UserProfile = () => {
       case "social":
         return (
           <form
-            onSubmit={handleSocialSubmit}
+            onSubmit={handleSubmit}
             className=" w-full flex flex-col gap-3"
           >
-            <div className="flex flex-wrap items-center justify-start min-h-[75vh]">
-              {socialProfiles.map((i, index) => (
+            <div className="flex flex-wrap items-center justify-start">
+              {userData?.socialProfile?.map((i, index) => (
                 <div className="w-full flex items-center justify-start gap-3 mt-4">
                   <img
                     className="h-12 w-12"
@@ -268,7 +231,7 @@ const UserProfile = () => {
                 </div>
               ))}
             </div>
-            {socialProfiles?.length ? (
+            {userData?.socialProfile?.length ? (
               <div className=" w-[30%] flex items-center justify-start mt-2">
                 <button
                   type="submit"

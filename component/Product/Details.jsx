@@ -19,18 +19,16 @@ const Details = ({ id }) => {
   const [activeImage, setActiveImage] = useState("");
   const dispatch = useDispatch();
   let cartData = useSelector(state => state.cart.cart);
+  const user = useSelector((state) => state?.user?.user)
   useEffect(() => {
     getProductData();
   }, [id]);
   const getProductData = () => {
     getProductDetails(id).then(res => {
-
       if (res.statusCode == 200) {
-        console.log(res);
         setProductData(res.data);
         setActiveImage(res?.data?.media[0]);
       }
-
     })
 
   };
@@ -42,13 +40,12 @@ const Details = ({ id }) => {
       if (existingProductIndex >= 0) {
         existingCartData[existingProductIndex] = {
           ...existingCartData[existingProductIndex],
-          qty: (existingCartData[existingProductIndex]?.qty || 1) + 1,
+          quantity: (existingCartData[existingProductIndex]?.quantity || 1) + 1,
         };
       } else {
         existingCartData.push(productData);
       }
-      const updatedCartData = JSON.stringify(existingCartData);
-      dispatch(handleCart(updatedCartData)).then((res) => {
+      dispatch(handleCart(existingCartData, user?.token)).then((res) => {
         if (res) {
           toast.success('Added to cart successfully');
         }

@@ -13,20 +13,20 @@ const CartSummary = ({ userCart, handlePlaceOrder }) => {
                 <h4 className='mt-3'>
                     ₹ {
                         userCart.reduce((accumulator, currentObject) => {
-                            return accumulator + currentObject.sellingPrice * (currentObject.qty || 1)
-                        }, 0)
+                            return accumulator + currentObject.sellingPrice * (currentObject.quantity || 1)
+                        }, 0).toFixed(2)
                     }
                 </h4>
             </div>
             <div className="mt-1 flex items-center justify-between">
                 <h4 className="">
-                    Discount
+                    You Saved
                 </h4>
                 <h4 className="flex items-center justify-center font-light relative after:absolute after:content-[''] after:w-full after:h-[0.8px] after:bg-[#3c3c3c95]">
                     {
                         userCart.reduce((accumulator, currentObject) => {
-                            return accumulator + currentObject.price * (currentObject.qty || 1)
-                        }, 0)
+                            return accumulator + currentObject.price * (currentObject.quantity || 1)
+                        }, 0).toFixed(2)
                     }
                 </h4>
             </div>
@@ -53,7 +53,7 @@ const CartSummary = ({ userCart, handlePlaceOrder }) => {
                 <h4 className="flex items-center justify-center">
                     ₹ {
                         parseInt(userCart.reduce((accumulator, currentObject) => {
-                            return accumulator + (currentObject.price + 28) * (currentObject.qty || 1)
+                            return accumulator + (currentObject.price + 28) * (currentObject.quantity || 1)
                         }, 0)) + 80
                     }
                 </h4>

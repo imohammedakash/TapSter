@@ -11,7 +11,6 @@ const Index = () => {
       setProduct(res.data)
     })
   }, [])
-  console.log(product)
   return (
     <Wrapper>
       <div className=" mt-10">

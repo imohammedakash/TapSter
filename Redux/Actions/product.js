@@ -19,4 +19,15 @@ export const getProductDetails = async (id) => {
         return err?.response?.data ? err?.response?.data : err.message;
     }
 };
+export const getProductCategories = async () => {
+    try {
+        const { data } = await axios.get(
+            `https://tapster-dev.onrender.com/api/users/category`
+        );
+        return data;
+    } catch (err) {
+        return err?.response?.data ? err?.response?.data : err.message;
+    }
+};
+
 

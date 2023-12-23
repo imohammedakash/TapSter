@@ -5,8 +5,7 @@ import { FaSignal } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import { motion } from "framer-motion";
 import { data } from "@/data";
-const Demo = ({ userData }) => {
-  console.log(window.location.pathname)
+const Demo = React.memo(({ userData }) => {
   return (
     <div className="w-full flex md:items-start items-center md:flex-row flex-col relative justify-evenly gap-5 mt-12">
       {
@@ -345,6 +344,6 @@ const Demo = ({ userData }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Demo;
