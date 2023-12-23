@@ -21,7 +21,7 @@ const Index = () => {
         </div>
         {
 
-          product?.products?.length ? <div className={`my-10 flex items-center ${product?.products?.length % 2 === 0 ? 'justify-center' : 'justify-start'} gap-4 flex-wrap`}>
+          product?.products?.length ? <div className={`my-10 flex items-center justify-center gap-4 flex-wrap`}>
             {
               product?.products.map(item => (
                 <Card
