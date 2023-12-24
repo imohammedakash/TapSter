@@ -14,11 +14,10 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/Redux/Actions/user";
 const CustomLink = ({ href, title, className = "" }) => {
-  const router = useRouter();
   return (
     <Link
       href={href}
-      className={`${router.asPath === href ? "text-red-700" : ""} font-normal`}
+      className={`font-normal`}
     >
       {title}
     </Link>
@@ -48,9 +47,9 @@ const Header = () => {
         </div>
         <div className="md:block hidden">
           <nav className="flex items-center gap-7 capitalize">
+            <CustomLink href="/" title="Dashboard" />
             <CustomLink href="/product" title="Product" />
-            <CustomLink href="/services" title="Price" />
-            <CustomLink href="/latest" title="Latest" />
+            <CustomLink href="/services" title="Services" />
             <CustomLink href="/blog" title="Blog" />
           </nav>
         </div>
@@ -91,6 +90,14 @@ const Header = () => {
                     <IoNotificationsOutline className="text-xl text-gray-800" />
                     <h3>Notification</h3>
                   </Link>
+                  <Link
+                    onClick={() => setShowModal(false)}
+                    href={`/notification`}
+                    className="w-full flex items-center justify-start cursor-pointer gap-3 text-center font-normal text-sm py-2 border-y my-2"
+                  >
+                    <FiBookOpen className="text-lg font-normal text-gray-800" />
+                    <h3>Your Orders</h3>
+                  </Link>
                   <div className="w-full md:hidden block">
                     <Link
                       onClick={() => setShowModal(false)}
@@ -107,14 +114,6 @@ const Header = () => {
                     >
                       <FiGitPullRequest className="text-lg font-normal text-gray-800" />
                       <h3>Services</h3>
-                    </Link>
-                    <Link
-                      onClick={() => setShowModal(false)}
-                      href={`/latest`}
-                      className="w-full flex items-center justify-start cursor-pointer gap-3 text-center font-normal text-sm py-2 border-y my-2"
-                    >
-                      <FiGlobe className="text-lg font-normal text-gray-800" />
-                      <h3>Latest</h3>
                     </Link>
                     <Link
                       onClick={() => setShowModal(false)}

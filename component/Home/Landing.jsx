@@ -3,7 +3,6 @@ import { FaAddressCard, FaMobile } from "react-icons/fa";
 import { MdFingerprint, MdTapAndPlay } from "react-icons/md";
 import { BsArrowRight, BsPersonVcard } from "react-icons/bs";
 import women from "../../public/women.png";
-import { motion } from "framer-motion";
 import Image from "next/image";
 const Landing = () => {
   return (
