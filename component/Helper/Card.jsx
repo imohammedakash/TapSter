@@ -12,6 +12,7 @@ const Card = ({ data }) => {
         className="w-full h-[12rem] object-cover rounded-t  "
         src={data.media[0]}
         alt={`${data.title}-image`}
+        loading="lazy"
       />
       <div className="w-full relative px-4 mt-3">
         <div className="w-full flex items-center justify-start">

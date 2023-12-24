@@ -6,7 +6,7 @@ const Wrapper = dynamic(() => import("../Wrapper/Wrapper"));
 const Landing = dynamic(() => import("./Landing"));
 const Demo = dynamic(() => import("./Demo"));
 const Map = dynamic(() => import("./Map"));
-const DisplayProduct = dynamic(() => import("./DisplayProduct"));
+const DisplayProduct = dynamic(() => import("./Category"));
 const Customers = dynamic(() => import("./Customers"));
 
 const Home = () => {

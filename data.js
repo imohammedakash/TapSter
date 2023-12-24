@@ -89,51 +89,62 @@ export const productCategory = [
 ]
 export const Customers = [
   {
+    _id: "abc123",
     title: "",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkQbBiF1GKqvk2KTNi619m9puadD55TMFiCVyCmoheEJaaqBKv85mPWuisckpQHRQ8Z3E&usqp=CAU"
   },
   {
+    _id: "def456",
     title: "",
     image: "https://www.edge-ai-vision.com/wp-content/uploads/2023/03/logo_circuitsutra-technologies.png"
   },
   {
+    _id: "ghi789",
     title: "",
     image: "https://www.dexigner.com/images/directory/xxi/30688.jpg"
   },
   {
+    _id: "jkl012",
     title: "",
     image: "https://prod.ucwe.capgemini.com/wp-content/uploads/2022/05/Capgemini.gif"
   },
   {
+    _id: "mno345",
     title: "",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Ford_logo_flat.svg/2560px-Ford_logo_flat.svg.png"
   },
   {
+    _id: "pqr678",
     title: "",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/800px-IBM_logo.svg.png"
   },
   {
+    _id: "stu901",
     title: "",
     image: "https://www.thestatesman.com/wp-content/uploads/2022/06/TCS.jpg"
   },
   {
+    _id: "vwx234",
     title: "",
     image: "https://www.livelaw.in/h-upload/2022/01/14/407638-hcl-final.jpg"
   },
   {
+    _id: "yz0123",
     title: "",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Nagarro_logo_new.svg/1200px-Nagarro_logo_new.svg.png"
   },
   {
+    _id: "456abc",
     title: "",
     image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Zara_Logo.svg/1280px-Zara_Logo.svg.png"
   },
   {
+    _id: "789def",
     title: "",
     image: "https://blog.myntra.com/wp-content/themes/myntra/assets/img/Myntra-logo-horizontal.png"
   },
+];
 
-]
 
 
 

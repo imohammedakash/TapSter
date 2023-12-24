@@ -5,7 +5,7 @@ export const handleCart = (data, token = null) => async (dispatch) => {
     dispatch({
       type: "handleCart_REQUEST",
     });
-    
+
     if (token?.length > 0) {
       let payload = data.map(item => ({
         productId: item._id,
@@ -48,7 +48,7 @@ export const getCartProduct = (token) => async (dispatch) => {
       },
       withCredentials: true
     });
-    let mappedData = data.data[0].products.map(prod => prod.productId)
+    let mappedData = data.data[0].products.map(prod => ({ ...prod.productId, quantity: prod.quantity }))
     dispatch({
       type: "handleCart_SUCCESS",
       payload: JSON.stringify(mappedData),

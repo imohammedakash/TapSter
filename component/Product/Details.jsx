@@ -62,6 +62,7 @@ const Details = ({ id }) => {
         <div className="md:w-1/2 w-full flex md:items-start items-center justify-center flex-col">
           <div className="flex items-center h-[27rem] w-full justify-start ">
             <img
+              loading="lazy"
               className=" h-full w-full object-contain transition-all rounded"
               src={activeImage.imageUrl}
               alt=""
@@ -70,6 +71,7 @@ const Details = ({ id }) => {
           <div className="flex items-center justify-start md:mt-5 mt-2 gap-4">
             {productData?.images?.map((image) => (
               <img
+                loading="lazy"
                 onClick={() => setActiveImage(image)}
                 className={`h-[3.5rem] w-[3.5rem] object-cover border cursor-pointer rounded transition-all ${image.imageUrl === activeImage.imageUrl ? "border-[3px] border-[#3cd9de]" : ""
                   }`}

@@ -220,6 +220,7 @@ const UserProfile = () => {
                     className="h-12 w-12"
                     src={i["template"]["image"]}
                     alt={i["template"]["name"]}
+                    loading="lazy"
                   />
                   <input
                     value={i?.url}

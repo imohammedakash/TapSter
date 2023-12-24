@@ -23,7 +23,7 @@ const ProductArea = () => {
     else
         return (
             <div className='h-[90vh] bg-slate-100 w-full flex items-start justify-start sm:flex-row flex-col gap-2 p-2' >
-                <div className="md:w-[73%] w-full">
+                <div className="md:w-[73%] h-full overflow-auto w-full">
                     <CartProduct userCart={userCart} />
                 </div>
                 <div className="sm:w-[27%] w-full md:block sm:hidden block bg-white px-2 py-4">

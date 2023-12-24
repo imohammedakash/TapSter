@@ -82,6 +82,7 @@ const Profile = ({ id }) => {
       <div className="w-full h-32 flex justify-center items-center flex-col relative">
         <div className="w-full h-full relative">
           <img
+            loading="lazy"
             draggable={false}
             src={userData?.coverPic}
             alt=""
@@ -90,6 +91,7 @@ const Profile = ({ id }) => {
         </div>
         <div className="rounded-full h-40 w-40 absolute top-10 overflow-hidden">
           <img
+            loading="lazy"
             draggable={false}
             src={userData?.profilePic}
             alt=""

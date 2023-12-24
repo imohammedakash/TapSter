@@ -33,7 +33,7 @@ const CartProduct = ({ userCart }) => {
             <div key={item?._id} className='w-full bg-white border-b flex items-center justify-center'>
                 <div className='p-2 w-[65%] flex items-start justify-start gap-4  '>
                     <div className="md:h-32 md:w-32 h-16 w-16">
-                        <img className='h-full w-full object-contain' src={item.media[0].imageUrl} alt="" />
+                        <img className='h-full w-full object-contain' loading="lazy" src={item.media[0].imageUrl} alt="" />
                     </div>
                     <div className=" w-full flex flex-col">
                         <h1 className="sm:text-xl text-sm font-medium mt-1 whitespace-nowrap">{item?.productName}</h1>

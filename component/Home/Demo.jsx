@@ -45,6 +45,7 @@ const Demo = React.memo(({ userData }) => {
                 <div className="w-full flex items-center justify-center relative">
                   <img
                     draggable={false}
+                    loading="lazy"
                     src={
                       userData?.profilePic === "" ||
                         userData?.profilePic === undefined
@@ -57,6 +58,7 @@ const Demo = React.memo(({ userData }) => {
                   <div className="absolute w-full h-24 z-[-2] top-0">
                     <img
                       draggable={false}
+                      loading="lazy"
                       src={
                         userData?.coverPic === "" || !userData
                           ? "https://t3.ftcdn.net/jpg/05/57/04/76/360_F_557047649_CbCAFT8NfXkHffKu3l8O5jgV1dUpmfKE.jpg"
@@ -92,6 +94,7 @@ const Demo = React.memo(({ userData }) => {
                       <div className="flex items-center justify-center">
                         <div className="h-12 w-12 flex items-center justify-center text-xl rounded-xl shadow-xl bg-white border p-1">
                           <img
+                            loading="lazy"
                             src="https://cdn4.iconfinder.com/data/icons/address-book-providers-in-colors/512/gmail-64.png"
                             className="h-full w-full object-cover rounded-xl"
                             alt="email"
@@ -101,6 +104,7 @@ const Demo = React.memo(({ userData }) => {
                       <div className="flex items-center justify-center">
                         <div className="h-12 w-12 flex items-center justify-center text-xl rounded-xl shadow-xl bg-white border p-1">
                           <img
+                            loading="lazy"
                             src="https://cdn4.iconfinder.com/data/icons/social-media-2097/94/phone-512.png"
                             className="h-full w-full object-cover rounded-xl"
                             alt="phone"
@@ -111,6 +115,7 @@ const Demo = React.memo(({ userData }) => {
                         <div key={i.id} className="flex items-center justify-center">
                           <div className="h-12 w-12 flex items-center justify-center text-xl rounded-xl shadow-xl bg-white border p-[3px]">
                             <img
+                              loading="lazy"
                               src={i?.image}
                               className="h-full w-full object-cover rounded-xl"
                               alt={i?.image}

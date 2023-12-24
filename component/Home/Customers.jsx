@@ -1,15 +1,6 @@
 import { Customers as CustomerData } from '@/data'
 import React from 'react'
 
-
-const Wrapper = React.memo(({ data }) => {
-    return (
-        <div className=' w-[14rem] flex items-center justify-center bg-white hover:scale-105 transition-all'>
-            <img className="" src={data.image} alt="" />
-        </div>
-    )
-})
-
 const Customers = () => {
     return (
         <div className='w-full flex items-center justify-center flex-col mb-10'>
@@ -17,7 +8,9 @@ const Customers = () => {
             <div className="w-full flex items-center justify-evenly flex-wrap gap-2 mt-10">
                 {
                     CustomerData.map((item) => (
-                        <Wrapper data={item} />
+                        <div key={item._id} className=' w-[14rem] flex items-center justify-center bg-white hover:scale-105 transition-all'>
+                            <img className="" loading="lazy" src={item.image} alt="" />
+                        </div>
                     ))
                 }
             </div>
